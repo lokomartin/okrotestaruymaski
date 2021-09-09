@@ -58,14 +58,14 @@ async def private_handler(bot: Client, cmd: Message):
     ............................ 🌧 Details / Detaylar ............................
 
     🌈 File: `{media.file_name}`
-
+    🍏 Size: `{str(media.file_size)}`
     [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         else:
             text = f"""
     ....................... ✅ Tamamlandı / Finished .......................
 
     🌈 File: `{media.file_name}`
-
+    🍏 Size: `{str(media.file_size)}`
     [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         await sendMessage(
             bot=bot,
