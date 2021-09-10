@@ -116,7 +116,7 @@ async def private_handler(bot: Client, cmd: Message):
         # delete send file +
         if Config.DELETE_SENT_FILE:
             tex = f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
-            forward.reply_text(tex, reply_to_message_id = forward.message_id)
+            await forward.reply_text(tex, reply_to_message_id = forward.message_id)
             await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
             await forward.delete(True)
         # delete send file -
@@ -221,7 +221,7 @@ async def files_handler(bot: Client, cmd: Message):
     # delete send file +
     if Config.DELETE_SENT_FILE:
         tex = f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
-        forward.reply_text(tex, reply_to_message_id = forward.message_id)
+        await forward.reply_text(tex, reply_to_message_id = forward.message_id)
         await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
         await forward.delete(True)
     # delete send file -
