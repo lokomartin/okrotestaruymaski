@@ -61,7 +61,7 @@ oluşturacağım bağlantıya kim tıklarsa ona, bana gönderdiğin dosyayı/med
 - `ACCEPT_FROM_PRIVATE`: Accepting backup from bot's private. Example: `False`
 - `START_MESSAGE`: Set custom start message. Example: `Bot is running and up.`
 - `DELETE_SENT_MESSAGE`: Delete bot's "saved-info" messages. Example: `True` Default is `False`
-- `DELETE_SENT_MESSAGE_TIME`: Set custom seconds for delete "saved-info" messages. Default is `10`
+- `DELETE_SENT_MESSAGE_TIME`: Set custom seconds for delete "saved-info" messages. Default is `60`
 </details>
 
 ## Thanks
