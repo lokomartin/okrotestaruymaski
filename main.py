@@ -60,13 +60,7 @@ async def private_handler(bot: Client, cmd: Message):
                 await db.delete_user(cmd.from_user.id)
         #
         forward = await forwardMessage(cmd)
-        # delete send file +
-        if Config.DELETE_SENT_FILE:
-            tex = f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
-            forward.reply_text(tex, reply_to_message_id = forward.message_id)
-            await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
-            await forward.delete(True)
-        # delete send file -
+        
         size = humanbytes(media.file_size)
         if Config.AUTO_DELETE:
             text = f"""
@@ -118,6 +112,15 @@ async def private_handler(bot: Client, cmd: Message):
         if Config.DELETE_SENT_MESSAGE:
             await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))
             await sentmessage.delete(True)
+        #
+        # delete send file +
+        if Config.DELETE_SENT_FILE:
+            tex = f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
+            forward.reply_text(tex, reply_to_message_id = forward.message_id)
+            await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
+            await forward.delete(True)
+        # delete send file -
+        #            
 
 
 
@@ -158,13 +161,7 @@ async def files_handler(bot: Client, cmd: Message):
             await db.delete_user(cmd.from_user.id)
     #
     forward = await forwardMessage(cmd)
-    # delete send file +
-    if Config.DELETE_SENT_FILE:
-        tex = f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
-        forward.reply_text(tex, reply_to_message_id = forward.message_id)
-        await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
-        await forward.delete(True)
-    # delete send file -
+    
     #
     size = humanbytes(media.file_size)
     if Config.AUTO_DELETE:
@@ -221,6 +218,13 @@ async def files_handler(bot: Client, cmd: Message):
             await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))
             await sentmessage.delete(True)
     #
+    # delete send file +
+    if Config.DELETE_SENT_FILE:
+        tex = f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
+        forward.reply_text(tex, reply_to_message_id = forward.message_id)
+        await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
+        await forward.delete(True)
+    # delete send file -
 
 
 @Bot.on_message(filters.private & filters.command("start") & ~filters.edited)
