@@ -60,7 +60,13 @@ async def private_handler(bot: Client, cmd: Message):
                 await db.delete_user(cmd.from_user.id)
         #
         forward = await forwardMessage(cmd)
-        #
+        # delete send file +
+        if Config.DELETE_SENT_FILE:
+            tex = f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
+            forward.reply_text(tex, reply_to_message_id = forward.message_id)
+            await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
+            await forward.delete(True)
+        # delete send file -
         size = humanbytes(media.file_size)
         if Config.AUTO_DELETE:
             text = f"""
@@ -75,7 +81,7 @@ async def private_handler(bot: Client, cmd: Message):
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
-                text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek."
+                text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
         #   
             sentmessage = await sendMessage(
                 bot=bot,
@@ -102,7 +108,7 @@ async def private_handler(bot: Client, cmd: Message):
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
-                text += f"\n\n🇬🇧 This message will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds.\n🇹🇷 Bu mesaj {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek."
+                text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
             sentmessage = await sendMessage(
                 bot=bot,
                 message_id=cmd.message_id,
@@ -111,7 +117,7 @@ async def private_handler(bot: Client, cmd: Message):
             )
         if Config.DELETE_SENT_MESSAGE:
             await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))
-            await sentmessage.delete()
+            await sentmessage.delete(True)
 
 
 
@@ -152,6 +158,13 @@ async def files_handler(bot: Client, cmd: Message):
             await db.delete_user(cmd.from_user.id)
     #
     forward = await forwardMessage(cmd)
+    # delete send file +
+    if Config.DELETE_SENT_FILE:
+        tex = f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
+        forward.reply_text(tex, reply_to_message_id = forward.message_id)
+        await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
+        await forward.delete(True)
+    # delete send file -
     #
     size = humanbytes(media.file_size)
     if Config.AUTO_DELETE:
@@ -168,7 +181,7 @@ async def files_handler(bot: Client, cmd: Message):
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         #
         if Config.DELETE_SENT_MESSAGE:
-            text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek."
+            text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
         sentmessage = await sendMessage(
             bot=bot,
             message_id=cmd.message_id,
@@ -196,7 +209,7 @@ async def files_handler(bot: Client, cmd: Message):
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         #
         if Config.DELETE_SENT_MESSAGE:
-            text += f"\n\n🇬🇧 This message will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds.\n🇹🇷 Bu mesaj {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek."
+            text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
         sentmessage = await sendMessage(
             bot=bot,
             message_id=cmd.message_id,
@@ -206,7 +219,7 @@ async def files_handler(bot: Client, cmd: Message):
     #
     if Config.DELETE_SENT_MESSAGE:
             await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))
-            await sentmessage.delete()
+            await sentmessage.delete(True)
     #
 
 
@@ -258,7 +271,7 @@ async def handle_Fsub_Join(bot: Client, event: Message):
     :param bot: pyrogram.Client
     :param event: pyrogram.types.Message
     """
-    
+
     if Config.FORCE_SUB_CHANNEL:
         try:
             user_ = await bot.get_chat_member(event.chat.id, event.from_user.id)

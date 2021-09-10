@@ -29,7 +29,8 @@ oluşturacağım bağlantıya kim tıklarsa ona, bana gönderdiğin dosyayı/med
 - Set custom Blocked extensions
 - Set custom url-prefix
 - Custom auto-delete time
-- Delete saved-info message with custom time
+- Delete message (saved-info) sent by bot with custom time
+- Delete file (saved-file) sent by bot with custom time
 - Custom auto-kick banned user time
 - Custom start message
 - Compatible with PublicLeech-like leechers (edit as video)
@@ -60,8 +61,11 @@ oluşturacağım bağlantıya kim tıklarsa ona, bana gönderdiğin dosyayı/med
 - `AUTO_KICK_TIME`: Auto-kick seconds for banned users. Example: `10`
 - `ACCEPT_FROM_PRIVATE`: Accepting backup from bot's private. Example: `False`
 - `START_MESSAGE`: Set custom start message. Example: `Bot is running and up.`
-- `DELETE_SENT_MESSAGE`: Delete bot's "saved-info" messages. Example: `True` Default is `False`
+- `DELETE_SENT_MESSAGE`: Delete message (saved-info) sent by bot. Example: `True` Default is `False`
 - `DELETE_SENT_MESSAGE_TIME`: Set custom seconds for delete "saved-info" messages. Default is `60`
+- `DELETE_SENT_FILE`: Delete file (saved-file) sent by bot. Example: `True` Default is `False`
+- `DELETE_SENT_FILE_TIME`: Set custom seconds for delete bot's sent files. Default is `60`
+
 </details>
 
 ## Thanks

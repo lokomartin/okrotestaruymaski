@@ -16,22 +16,24 @@ class Config(object):
     API_ID = int(os.environ.get('API_ID', 1111111))
     API_HASH = os.environ.get('API_HASH', None)
     STRING_SESSION = os.environ.get("STRING_SESSION", "")
-    DB_CHANNEL_ID = int(os.environ.get('DB_CHANNEL_ID',''))
+    DB_CHANNEL_ID = int(os.environ.get('DB_CHANNEL_ID', ''))
     FORCE_SUB_CHANNEL = os.environ.get('FORCE_SUB_CHANNEL', None)
-    MONGODB_URI = os.environ.get('MONGODB_URI','')
+    MONGODB_URI = os.environ.get('MONGODB_URI', '')
     BLOCKED_EXTENSIONS = list(set(x for x in os.environ.get("BLOCKED_EXTENSIONS", DEFAULT_BLOCKED_EXTENSIONS).split()))
-    BOT_USERNAME = os.environ.get('BOT_USERNAME','SaverBot')
+    BOT_USERNAME = os.environ.get('BOT_USERNAME', 'SaverBot')
     MIN_FILE_SIZE = int(os.environ.get('MIN_FILE_SIZE', 0)) # for save everything:0 for save nothing:200000 5242880
     SEND_AS_COPY = os.environ.get('SEND_AS_COPY', True) # if you want to send files to users as a copy
     SAVE_AS_COPY = os.environ.get('SAVE_AS_COPY', True) # if you want to save files to db as a copy
-    CONTACT_ADRESS = os.environ.get('CONTACT_ADRESS','@HuzunluArtemis')
-    URL_PREFIX = os.environ.get('URL_PREFIX','HA')
-    AUTO_DELETE = os.environ.get('AUTO_DELETE',True)
-    AUTO_DELETE_TIME = int(os.environ.get('AUTO_DELETE_TIME',10))
-    AUTO_KICK_TIME = int(os.environ.get('AUTO_KICK_TIME',10))
+    CONTACT_ADRESS = os.environ.get('CONTACT_ADRESS', '@HuzunluArtemis')
+    URL_PREFIX = os.environ.get('URL_PREFIX', 'HA')
+    AUTO_DELETE = os.environ.get('AUTO_DELETE', True)
+    AUTO_DELETE_TIME = int(os.environ.get('AUTO_DELETE_TIME', 10))
+    AUTO_KICK_TIME = int(os.environ.get('AUTO_KICK_TIME', 10))
     ACCEPT_FROM_PRIVATE = os.environ.get('ACCEPT_FROM_PRIVATE', False)
     DELETE_SENT_MESSAGE = os.environ.get('DELETE_SENT_MESSAGE', False) # delete bots message
     DELETE_SENT_MESSAGE_TIME = int(os.environ.get('DELETE_SENT_MESSAGE_TIME', 60))
+    DELETE_SENT_FILE = os.environ.get('DELETE_SENT_FILE', False) # delete bot send message
+    DELETE_SENT_FILE_TIME = int(os.environ.get('DELETE_SENT_FILE_TIME', 60))
     START_MESSAGE = os.environ.get('START_MESSAGE', "Bot is running.")
 
 
@@ -56,5 +58,7 @@ class Config(object):
     # AUTO_KICK_TIME = 10
     # ACCEPT_FROM_PRIVATE = False
     # DELETE_SENT_MESSAGE = os.environ.get('DELETE_SENT_MESSAGE', False) # delete bots message
-    # DELETE_SENT_MESSAGE_TIME = int(os.environ.get('DELETE_SENT_MESSAGE_TIME',10))
+    # DELETE_SENT_MESSAGE_TIME = int(os.environ.get('DELETE_SENT_MESSAGE_TIME', 60))
+    # DELETE_SENT_FILE = os.environ.get('DELETE_SENT_FILE', False) # delete bot send message
+    # DELETE_SENT_FILE_TIME = int(os.environ.get('DELETE_SENT_FILE_TIME', 60))
     # START_MESSAGE = "Bot is running."
