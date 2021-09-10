@@ -32,11 +32,13 @@ def humanbytes(size):
 async def private_handler(bot: Client, cmd: Message):
     if Config.ACCEPT_FROM_PRIVATE:
         media = cmd.document or cmd.video or cmd.audio or cmd.photo or cmd.voice
+        
         try:
-            if media.file_name.rsplit(".", 1)[-1] in Config.BLOCKED_EXTENSIONS:
+            comingfilename = media.file_name
+            if comingfilename.rsplit(".", 1)[-1] in Config.BLOCKED_EXTENSIONS:
                 return
         except AttributeError:
-            pass
+            comingfilename = None
         if media.file_size < int(Config.MIN_FILE_SIZE):
             return
         if (Config.FORCE_SUB_CHANNEL is not None) and (cmd.from_user.is_bot is False):
@@ -74,7 +76,7 @@ async def private_handler(bot: Client, cmd: Message):
 
 ............................ 🌧 Details / Detaylar ............................
 
-🌈 File: `{media.file_name}`
+🌈 File: `{comingfilename}`
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
@@ -101,7 +103,7 @@ async def private_handler(bot: Client, cmd: Message):
             text = f"""
 ....................... ✅ Tamamlandı / Finished .......................
 
-🌈 File: `{media.file_name}`
+🌈 File: `{comingfilename}`
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
@@ -131,10 +133,11 @@ async def files_handler(bot: Client, cmd: Message):
         if cmd.edit_date is not None:
             return
     try:
-        if media.file_name.rsplit(".", 1)[-1] in Config.BLOCKED_EXTENSIONS:
+        cammingfilename = media.file_name
+        if cammingfilename.rsplit(".", 1)[-1] in Config.BLOCKED_EXTENSIONS:
             return
     except:
-        pass
+        cammingfilename = None
     if media.file_size < int(Config.MIN_FILE_SIZE):
         return
     if (Config.FORCE_SUB_CHANNEL is not None) and (cmd.from_user.is_bot is False):
@@ -173,7 +176,7 @@ async def files_handler(bot: Client, cmd: Message):
 
 ............................ 🌧 Details / Detaylar ............................
 
-🌈 File: `{media.file_name}`
+🌈 File: `{cammingfilename}`
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         #
@@ -201,7 +204,7 @@ async def files_handler(bot: Client, cmd: Message):
         text = f"""
 ....................... ✅ Tamamlandı / Finished .......................
 
-🌈 File: `{media.file_name}`
+🌈 File: `{cammingfilename}`
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         #
