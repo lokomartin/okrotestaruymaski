@@ -230,7 +230,7 @@ async def start_handler(bot: Client, event: Message):
             # delete send file +
             if Config.DELETE_SENT_FILE:
                 tex = f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
-                sentfile.reply_text(tex, reply_to_message_id = sentfile.message_id)
+                await sentfile.reply_text(tex, reply_to_message_id = sentfile.message_id)
                 await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
                 await sentfile.delete(True)
             # delete send file -
