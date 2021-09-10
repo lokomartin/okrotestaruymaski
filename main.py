@@ -74,6 +74,8 @@ async def private_handler(bot: Client, cmd: Message):
 🌈 File: `{media.file_name}`
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+            if Config.DELETE_SENT_MESSAGE:
+                text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek."
         #   
             sentmessage = await sendMessage(
                 bot=bot,
@@ -99,6 +101,8 @@ async def private_handler(bot: Client, cmd: Message):
 🌈 File: `{media.file_name}`
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+            if Config.DELETE_SENT_MESSAGE:
+                text += f"\n\n🇬🇧 This message will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds.\n🇹🇷 Bu mesaj {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek."
             sentmessage = await sendMessage(
                 bot=bot,
                 message_id=cmd.message_id,
@@ -163,6 +167,8 @@ async def files_handler(bot: Client, cmd: Message):
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         #
+        if Config.DELETE_SENT_MESSAGE:
+            text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek."
         sentmessage = await sendMessage(
             bot=bot,
             message_id=cmd.message_id,
@@ -188,6 +194,9 @@ async def files_handler(bot: Client, cmd: Message):
 🌈 File: `{media.file_name}`
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+        #
+        if Config.DELETE_SENT_MESSAGE:
+            text += f"\n\n🇬🇧 This message will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds.\n🇹🇷 Bu mesaj {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek."
         sentmessage = await sendMessage(
             bot=bot,
             message_id=cmd.message_id,
