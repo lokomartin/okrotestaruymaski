@@ -15,6 +15,19 @@ from handlers.database.add_user import AddUserToDatabase
 User = Client( session_name=Config.STRING_SESSION, api_id=Config.API_ID,  api_hash=Config.API_HASH)
 Bot = Client( session_name="Auto Group - Private Chat Files Store Bot", api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN)
 
+def humanbytes(size):
+    # https://stackoverflow.com/a/49361727/4723940
+    # 2**10 = 1024
+    if not size:
+        return ""
+    power = 2 ** 10
+    n = 0
+    Dic_powerN = {0: " ", 1: "K", 2: "M", 3: "G", 4: "T"}
+    while size > power:
+        size /= power
+        n += 1
+    return str(round(size, 2)) + " " + Dic_powerN[n] + "B"
+
 @Bot.on_message(filters.private & (filters.document | filters.video | filters.audio) & ~filters.edited)
 async def private_handler(bot: Client, cmd: Message):
     if Config.ACCEPT_FROM_PRIVATE:
@@ -50,23 +63,23 @@ async def private_handler(bot: Client, cmd: Message):
         #
         if Config.AUTO_DELETE:
             text = f"""
-    ....................... ✅ Tamamlandı / Finished .......................
+....................... ✅ Tamamlandı / Finished .......................
 
-    🇹🇷 Bu dosya {Config.AUTO_DELETE_TIME} saniye içinde silinecektir. Ancak, veritabanıma kopyaladım! Aşağıdaki linkle sonsuza kadar sana ait.
-    🇬🇧 This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below.
+🇹🇷 Bu dosya {Config.AUTO_DELETE_TIME} saniye içinde silinecektir. Ancak, veritabanıma kopyaladım! Aşağıdaki linkle sonsuza kadar sana ait.
+🇬🇧 This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below.
 
-    ............................ 🌧 Details / Detaylar ............................
+............................ 🌧 Details / Detaylar ............................
 
-    🌈 File: `{media.file_name}`
-    🍏 Size: `{str(media.file_size)}`
-    [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
-        else:
-            text = f"""
-    ....................... ✅ Tamamlandı / Finished .......................
+🌈 File: `{media.file_name}`
+🍏 Size: `{humanbytes(media.file_size)}`
+[☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+    else:
+        text = f"""
+....................... ✅ Tamamlandı / Finished .......................
 
-    🌈 File: `{media.file_name}`
-    🍏 Size: `{str(media.file_size)}`
-    [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+🌈 File: `{media.file_name}`
+🍏 Size: `{humanbytes(media.file_size)}`
+[☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         await sendMessage(
             bot=bot,
             message_id=cmd.message_id,
