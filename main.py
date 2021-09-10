@@ -31,9 +31,12 @@ def humanbytes(size):
 @Bot.on_message(filters.private & (filters.document | filters.video | filters.audio | filters.photo | filters.voice))
 async def private_handler(bot: Client, cmd: Message):
     if Config.ACCEPT_FROM_PRIVATE:
-        media = cmd.document or cmd.video
-        if media.file_name.rsplit(".", 1)[-1] in Config.BLOCKED_EXTENSIONS:
-            return
+        media = cmd.document or cmd.video or cmd.audio or cmd.photo or cmd.voice
+        try:
+            if media.file_name.rsplit(".", 1)[-1] in Config.BLOCKED_EXTENSIONS:
+                return
+        except AttributeError:
+            pass
         if media.file_size < int(Config.MIN_FILE_SIZE):
             return
         if (Config.FORCE_SUB_CHANNEL is not None) and (cmd.from_user.is_bot is False):
@@ -123,12 +126,15 @@ async def private_handler(bot: Client, cmd: Message):
 
 @User.on_message(filters.group & (filters.document | filters.video | filters.audio))
 async def files_handler(bot: Client, cmd: Message):
-    media = cmd.document or cmd.video
+    media = cmd.document or cmd.video or cmd.audio
     if not cmd.from_user.is_bot:
         if cmd.edit_date is not None:
             return
-    if media.file_name.rsplit(".", 1)[-1] in Config.BLOCKED_EXTENSIONS:
-        return
+    try:
+        if media.file_name.rsplit(".", 1)[-1] in Config.BLOCKED_EXTENSIONS:
+            return
+    except:
+        pass
     if media.file_size < int(Config.MIN_FILE_SIZE):
         return
     if (Config.FORCE_SUB_CHANNEL is not None) and (cmd.from_user.is_bot is False):
