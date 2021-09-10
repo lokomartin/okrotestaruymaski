@@ -61,6 +61,7 @@ async def private_handler(bot: Client, cmd: Message):
         #
         forward = await forwardMessage(cmd)
         #
+        size = humanbytes(media.file_size)
         if Config.AUTO_DELETE:
             text = f"""
 ....................... ✅ Tamamlandı / Finished .......................
@@ -71,14 +72,21 @@ async def private_handler(bot: Client, cmd: Message):
 ............................ 🌧 Details / Detaylar ............................
 
 🌈 File: `{media.file_name}`
-🍏 Size: `{humanbytes(media.file_size)}`
+🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
-    else:
-        text = f"""
+        #
+            await asyncio.sleep(int(Config.AUTO_DELETE_TIME))
+            try:
+                await cmd.delete(True)
+            except Exception as err:
+                print(f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
+        #
+        else:
+            text = f"""
 ....................... ✅ Tamamlandı / Finished .......................
 
 🌈 File: `{media.file_name}`
-🍏 Size: `{humanbytes(media.file_size)}`
+🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         await sendMessage(
             bot=bot,
@@ -86,13 +94,6 @@ async def private_handler(bot: Client, cmd: Message):
             chat_id=cmd.chat.id,
             text=text
         )
-        if Config.AUTO_DELETE:
-            await asyncio.sleep(int(Config.AUTO_DELETE_TIME))
-            try:
-                await cmd.delete(True)
-            except Exception as err:
-                print(f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
-    #
 
 
 
@@ -134,6 +135,7 @@ async def files_handler(bot: Client, cmd: Message):
     #
     forward = await forwardMessage(cmd)
     #
+    size = humanbytes(media.file_size)
     if Config.AUTO_DELETE:
         text = f"""
 ....................... ✅ Tamamlandı / Finished .......................
@@ -144,14 +146,21 @@ async def files_handler(bot: Client, cmd: Message):
 ............................ 🌧 Details / Detaylar ............................
 
 🌈 File: `{media.file_name}`
-
+🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+        #
+        await asyncio.sleep(int(Config.AUTO_DELETE_TIME))
+        try:
+            await cmd.delete(True)
+        except Exception as err:
+            print(f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
+        #
     else:
         text = f"""
 ....................... ✅ Tamamlandı / Finished .......................
 
 🌈 File: `{media.file_name}`
-
+🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
     await sendMessage(
         bot=bot,
@@ -159,12 +168,6 @@ async def files_handler(bot: Client, cmd: Message):
         chat_id=cmd.chat.id,
         text=text
     )
-    if Config.AUTO_DELETE:
-        await asyncio.sleep(int(Config.AUTO_DELETE_TIME))
-        try:
-            await cmd.delete(True)
-        except Exception as err:
-            print(f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
 
 
 @Bot.on_message(filters.private & filters.command("start") & ~filters.edited)
