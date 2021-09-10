@@ -18,7 +18,8 @@ oluşturacağım bağlantıya kim tıklarsa ona, bana gönderdiğin dosyayı/med
 <details>
     <summary><b>Click Here For Details</b></summary><br>
 
-- Saving document, video and audio only.
+- Saves document, video and audio in group. (dont forget to add bot to your group)
+- Saves document, video, audio, photo and voice in bot's private chat (if enabled)
 - Save Permanently your Group Files
 - Save Permanently your Private Files
 - Auto delete or not delete saved files
