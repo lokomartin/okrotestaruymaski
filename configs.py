@@ -31,7 +31,7 @@ class Config(object):
     AUTO_KICK_TIME = int(os.environ.get('AUTO_KICK_TIME',10))
     ACCEPT_FROM_PRIVATE = os.environ.get('ACCEPT_FROM_PRIVATE', False)
     DELETE_SENT_MESSAGE = os.environ.get('DELETE_SENT_MESSAGE', False) # delete bots message
-    DELETE_SENT_MESSAGE_TIME = int(os.environ.get('DELETE_SENT_MESSAGE_TIME', 60))
+    DELETE_SENT_MESSAGE_TIME = int(os.environ.get('DELETE_SENT_MESSAGE_TIME',10))
     START_MESSAGE = os.environ.get('START_MESSAGE', "Bot is running.")
 
 
