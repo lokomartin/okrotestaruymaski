@@ -14,14 +14,15 @@ async def sendMessage(bot: Client, text: str, message_id: int, chat_id: int):
     :param message_id: Pass Message ID for Reply.
     :param chat_id: Pass Group Chat ID.
     """
-
+    
     try:
-        await bot.send_message(
+        sentmessage = await bot.send_message(
             chat_id=chat_id,
             text=text,
             reply_to_message_id=message_id,
             disable_web_page_preview=True
         )
+        return sentmessage
     except FloodWait as e:
         print(f"Sleep of {e.x}s caused by FloodWait")
         await asyncio.sleep(e.x)

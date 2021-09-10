@@ -258,7 +258,7 @@ async def handle_Fsub_Join(bot: Client, event: Message):
     :param bot: pyrogram.Client
     :param event: pyrogram.types.Message
     """
-
+    
     if Config.FORCE_SUB_CHANNEL:
         try:
             user_ = await bot.get_chat_member(event.chat.id, event.from_user.id)
