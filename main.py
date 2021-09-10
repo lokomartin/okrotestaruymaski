@@ -113,13 +113,7 @@ async def private_handler(bot: Client, cmd: Message):
             await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))
             await sentmessage.delete(True)
         #
-        # delete send file +
-        if Config.DELETE_SENT_FILE:
-            tex = f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
-            await forward.reply_text(tex, reply_to_message_id = forward.message_id)
-            await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
-            await forward.delete(True)
-        # delete send file -
+        
         #            
 
 
@@ -218,13 +212,7 @@ async def files_handler(bot: Client, cmd: Message):
             await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))
             await sentmessage.delete(True)
     #
-    # delete send file +
-    if Config.DELETE_SENT_FILE:
-        tex = f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
-        await forward.reply_text(tex, reply_to_message_id = forward.message_id)
-        await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
-        await forward.delete(True)
-    # delete send file -
+    
 
 
 @Bot.on_message(filters.private & filters.command("start") & ~filters.edited)
@@ -236,9 +224,16 @@ async def start_handler(bot: Client, event: Message):
         file_id = int(__data)
         try:
             if Config.SEND_AS_COPY:
-                await bot.copy_message(chat_id=event.chat.id, from_chat_id=int(Config.DB_CHANNEL_ID), message_id=file_id)
+                sentfile = await bot.copy_message(chat_id=event.chat.id, from_chat_id=int(Config.DB_CHANNEL_ID), message_id=file_id)
             else:
-                await bot.forward_messages(chat_id=event.chat.id, from_chat_id=int(Config.DB_CHANNEL_ID), message_ids=file_id)
+                sentfile = await bot.forward_messages(chat_id=event.chat.id, from_chat_id=int(Config.DB_CHANNEL_ID), message_ids=file_id)
+            # delete send file +
+            if Config.DELETE_SENT_FILE:
+                tex = f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
+                sentfile.reply_text(tex, reply_to_message_id = sentfile.message_id)
+                await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
+                await sentfile.delete(True)
+            # delete send file -
         except:
             await sendMessage(bot, f"Unable to Get Message!\n\nContact / Bildir: {Config.CONTACT_ADRESS}", event.message_id, event.chat.id)
 

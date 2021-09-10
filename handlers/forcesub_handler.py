@@ -36,7 +36,6 @@ async def ForceSub(bot: Client, cmd: Message):
             chat_id=cmd.chat.id,
             text = f"""
 🇬🇧 Hey {cmd.from_user.mention}, seems like you haven't joined our channel. Please [Join Channel]({invite_link.invite_link}) and turn back here!
-
 🇹🇷 Merhaba {cmd.from_user.mention}, kanalımıza katılmamış görünüyorsun. Lütfen [Kanala Katılın]({invite_link.invite_link}) ve tekrar buraya gelin!""",
             reply_to_message_id=cmd.message_id,
             disable_web_page_preview=True,
