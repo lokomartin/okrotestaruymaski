@@ -75,7 +75,7 @@ async def private_handler(bot: Client, cmd: Message):
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         #   
-            await sendMessage(
+            sentmessage = await sendMessage(
                 bot=bot,
                 message_id=cmd.message_id,
                 chat_id=cmd.chat.id,
@@ -99,12 +99,15 @@ async def private_handler(bot: Client, cmd: Message):
 🌈 File: `{media.file_name}`
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
-            await sendMessage(
+            sentmessage = await sendMessage(
                 bot=bot,
                 message_id=cmd.message_id,
                 chat_id=cmd.chat.id,
                 text=text
             )
+        if Config.DELETE_SENT_MESSAGE:
+            await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))
+            sentmessage.delete()
 
 
 
@@ -160,7 +163,7 @@ async def files_handler(bot: Client, cmd: Message):
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         #
-        await sendMessage(
+        sentmessage = await sendMessage(
             bot=bot,
             message_id=cmd.message_id,
             chat_id=cmd.chat.id,
@@ -185,12 +188,17 @@ async def files_handler(bot: Client, cmd: Message):
 🌈 File: `{media.file_name}`
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
-        await sendMessage(
+        sentmessage = await sendMessage(
             bot=bot,
             message_id=cmd.message_id,
             chat_id=cmd.chat.id,
             text=text
         )
+    #
+    if Config.DELETE_SENT_MESSAGE:
+            await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))
+            sentmessage.delete()
+    #
 
 
 @Bot.on_message(filters.private & filters.command("start") & ~filters.edited)
