@@ -74,10 +74,8 @@ async def private_handler(bot: Client, cmd: Message):
 🌈 File: `{media.file_name}`
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
-            if Config.DELETE_SENT_MESSAGE:
-                text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek."
-        #   
-            sentmessage = await sendMessage(
+            #   
+            await sendMessage(
                 bot=bot,
                 message_id=cmd.message_id,
                 chat_id=cmd.chat.id,
@@ -103,17 +101,12 @@ async def private_handler(bot: Client, cmd: Message):
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\n\n🇬🇧 This message will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds.\n🇹🇷 Bu mesaj {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek."
-            sentmessage = await sendMessage(
+            await sendMessage(
                 bot=bot,
                 message_id=cmd.message_id,
                 chat_id=cmd.chat.id,
                 text=text
             )
-        if Config.DELETE_SENT_MESSAGE:
-            await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))
-            sentmessage.delete()
-
-
 
 
 
