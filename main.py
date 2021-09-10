@@ -28,7 +28,7 @@ def humanbytes(size):
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + "B"
 
-@Bot.on_message(filters.private & (filters.document | filters.video | filters.audio) & ~filters.edited)
+@Bot.on_message(filters.private & (filters.document | filters.video | filters.audio | filters.photo | filters.voice))
 async def private_handler(bot: Client, cmd: Message):
     if Config.ACCEPT_FROM_PRIVATE:
         media = cmd.document or cmd.video
