@@ -74,12 +74,23 @@ async def private_handler(bot: Client, cmd: Message):
 🌈 File: `{media.file_name}`
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
-        #
+        #   
+            await sendMessage(
+                bot=bot,
+                message_id=cmd.message_id,
+                chat_id=cmd.chat.id,
+                text=text
+            )
             await asyncio.sleep(int(Config.AUTO_DELETE_TIME))
             try:
                 await cmd.delete(True)
             except Exception as err:
-                print(f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
+                await sendMessage(
+                bot=bot,
+                message_id=cmd.message_id,
+                chat_id=cmd.chat.id,
+                text=f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}"
+            )
         #
         else:
             text = f"""
@@ -88,12 +99,12 @@ async def private_handler(bot: Client, cmd: Message):
 🌈 File: `{media.file_name}`
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
-        await sendMessage(
-            bot=bot,
-            message_id=cmd.message_id,
-            chat_id=cmd.chat.id,
-            text=text
-        )
+            await sendMessage(
+                bot=bot,
+                message_id=cmd.message_id,
+                chat_id=cmd.chat.id,
+                text=text
+            )
 
 
 
@@ -149,11 +160,23 @@ async def files_handler(bot: Client, cmd: Message):
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         #
+        await sendMessage(
+            bot=bot,
+            message_id=cmd.message_id,
+            chat_id=cmd.chat.id,
+            text=text
+        )
+        #
         await asyncio.sleep(int(Config.AUTO_DELETE_TIME))
         try:
             await cmd.delete(True)
         except Exception as err:
-            print(f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
+            await sendMessage(
+            bot=bot,
+            message_id=cmd.message_id,
+            chat_id=cmd.chat.id,
+            text=f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}"
+        )
         #
     else:
         text = f"""
@@ -162,12 +185,12 @@ async def files_handler(bot: Client, cmd: Message):
 🌈 File: `{media.file_name}`
 🍏 Size: `{size}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
-    await sendMessage(
-        bot=bot,
-        message_id=cmd.message_id,
-        chat_id=cmd.chat.id,
-        text=text
-    )
+        await sendMessage(
+            bot=bot,
+            message_id=cmd.message_id,
+            chat_id=cmd.chat.id,
+            text=text
+        )
 
 
 @Bot.on_message(filters.private & filters.command("start") & ~filters.edited)
