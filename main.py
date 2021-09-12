@@ -74,14 +74,14 @@ async def private_handler(bot: Client, cmd: Message):
         
         size = humanbytes(media.file_size)
         if Config.AUTO_DELETE:
+            text = ""
             if not Config.SKIP_SAVED_INFO_MESSAGE:
-                text = f"""
+                text += f"""
 ....................... ✅ Tamamlandı / Finished .......................
 
 🇹🇷 Bu dosya {Config.AUTO_DELETE_TIME} saniye içinde silinecektir. Ancak, veritabanıma kopyaladım! Aşağıdaki linkle sonsuza kadar sana ait.
 🇬🇧 This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below."""
-            else:
-                text = f"""
+            text += f"""
 ............................ 🌧 Details / Detaylar ............................
 
 🌈 File: `{comingfilename}`
@@ -185,14 +185,14 @@ async def files_handler(bot: Client, cmd: Message):
     #
     size = humanbytes(media.file_size)
     if Config.AUTO_DELETE:
+        text = ""
         if not Config.SKIP_SAVED_INFO_MESSAGE:
-            text = f"""
+            text += f"""
 ....................... ✅ Tamamlandı / Finished .......................
 
 🇹🇷 Bu dosya {Config.AUTO_DELETE_TIME} saniye içinde silinecektir. Ancak, veritabanıma kopyaladım! Aşağıdaki linkle sonsuza kadar sana ait.
 🇬🇧 This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below."""
-        else:
-            text = f"""
+        text += f"""
 ............................ 🌧 Details / Detaylar ............................
 
 🌈 File: `{cammingfilename}`
