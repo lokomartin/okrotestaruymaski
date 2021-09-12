@@ -35,6 +35,7 @@ class Config(object):
     DELETE_SENT_FILE = os.environ.get('DELETE_SENT_FILE', False) # delete bot send message
     DELETE_SENT_FILE_TIME = int(os.environ.get('DELETE_SENT_FILE_TIME', 60))
     START_MESSAGE = os.environ.get('START_MESSAGE', "Bot is running.")
+    SKIP_SAVED_INFO_MESSAGE = os.environ.get('SKIP_SAVED_INFO_MESSAGE', False)
 
 
     # if you want to config from here, uncomment this lines and edit:
@@ -62,3 +63,4 @@ class Config(object):
     # DELETE_SENT_FILE = os.environ.get('DELETE_SENT_FILE', False) # delete bot send message
     # DELETE_SENT_FILE_TIME = int(os.environ.get('DELETE_SENT_FILE_TIME', 60))
     # START_MESSAGE = "Bot is running."
+    # SKIP_SAVED_INFO_MESSAGE = False

@@ -66,6 +66,7 @@ oluşturacağım bağlantıya kim tıklarsa ona, bana gönderdiğin dosyayı/med
 - `DELETE_SENT_MESSAGE_TIME`: Set custom seconds for delete "saved-info" messages. Default is `60`
 - `DELETE_SENT_FILE`: Delete file (saved-file) sent by bot. Example: `True` Default is `False`
 - `DELETE_SENT_FILE_TIME`: Set custom seconds for delete bot's sent files. Default is `60`
+- `SKIP_SAVED_INFO_MESSAGE`: Skip saved info message like "Your file saved into db..." Default is `False`
 
 </details>
 

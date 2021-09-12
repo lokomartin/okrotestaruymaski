@@ -31,8 +31,14 @@ def humanbytes(size):
 @Bot.on_message(filters.private & (filters.document | filters.video | filters.audio | filters.photo | filters.voice))
 async def private_handler(bot: Client, cmd: Message):
     if Config.ACCEPT_FROM_PRIVATE:
+        # take caption of message +
+        caption = None
+        try:
+            caption = cmd.caption
+        except:
+            caption = None
+        # take caption of message -
         media = cmd.document or cmd.video or cmd.audio or cmd.photo or cmd.voice
-        
         try:
             comingfilename = media.file_name
             if comingfilename.rsplit(".", 1)[-1] in Config.BLOCKED_EXTENSIONS:
@@ -68,16 +74,19 @@ async def private_handler(bot: Client, cmd: Message):
         
         size = humanbytes(media.file_size)
         if Config.AUTO_DELETE:
-            text = f"""
+            if not Config.SKIP_SAVED_INFO_MESSAGE:
+                text = f"""
 ....................... ✅ Tamamlandı / Finished .......................
 
 🇹🇷 Bu dosya {Config.AUTO_DELETE_TIME} saniye içinde silinecektir. Ancak, veritabanıma kopyaladım! Aşağıdaki linkle sonsuza kadar sana ait.
-🇬🇧 This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below.
-
+🇬🇧 This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below."""
+            else:
+                text = f"""
 ............................ 🌧 Details / Detaylar ............................
 
 🌈 File: `{comingfilename}`
 🍏 Size: `{size}`
+🐇 Caption: `{caption}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
@@ -105,6 +114,7 @@ async def private_handler(bot: Client, cmd: Message):
 
 🌈 File: `{comingfilename}`
 🍏 Size: `{size}`
+🐇 Caption: `{caption}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
@@ -128,6 +138,13 @@ async def private_handler(bot: Client, cmd: Message):
 
 @User.on_message(filters.group & (filters.document | filters.video | filters.audio))
 async def files_handler(bot: Client, cmd: Message):
+    # take caption of message +
+    caption = None
+    try:
+        caption = cmd.caption
+    except:
+        caption = None
+    # take caption of message -
     media = cmd.document or cmd.video or cmd.audio
     if not cmd.from_user.is_bot:
         if cmd.edit_date is not None:
@@ -168,16 +185,19 @@ async def files_handler(bot: Client, cmd: Message):
     #
     size = humanbytes(media.file_size)
     if Config.AUTO_DELETE:
-        text = f"""
+        if not Config.SKIP_SAVED_INFO_MESSAGE:
+            text = f"""
 ....................... ✅ Tamamlandı / Finished .......................
 
 🇹🇷 Bu dosya {Config.AUTO_DELETE_TIME} saniye içinde silinecektir. Ancak, veritabanıma kopyaladım! Aşağıdaki linkle sonsuza kadar sana ait.
-🇬🇧 This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below.
-
+🇬🇧 This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below."""
+        else:
+            text = f"""
 ............................ 🌧 Details / Detaylar ............................
 
 🌈 File: `{cammingfilename}`
 🍏 Size: `{size}`
+🐇 Caption: `{caption}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         #
         if Config.DELETE_SENT_MESSAGE:
@@ -206,6 +226,7 @@ async def files_handler(bot: Client, cmd: Message):
 
 🌈 File: `{cammingfilename}`
 🍏 Size: `{size}`
+🐇 Caption: `{caption}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
         #
         if Config.DELETE_SENT_MESSAGE:
