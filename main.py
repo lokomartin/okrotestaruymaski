@@ -307,9 +307,11 @@ async def start_handler(bot: Client, event: Message):
                 sentfile = await bot.copy_message(chat_id=event.chat.id, from_chat_id=int(Config.DB_CHANNEL_ID), message_id=file_id)
             else:
                 sentfile = await bot.forward_messages(chat_id=event.chat.id, from_chat_id=int(Config.DB_CHANNEL_ID), message_ids=file_id)
-            tex = "🇬🇧 Link to your file. You can access your file at any time with this link:\n" + \
-                "🇹🇷 Dosyanızın linki. Bu linkle istediğiniz zaman tekrar dosyanıza ulaşabilirsiniz:\n\n" + \
-                f"🎲 https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(file_id)}"
+            tex = ""
+            if Config.SEND_LINK_AGAIN:
+                tex += "🇬🇧 Link to your file. You can access your file at any time with this link:\n" + \
+                    "🇹🇷 Dosyanızın linki. Bu linkle istediğiniz zaman tekrar dosyanıza ulaşabilirsiniz:\n\n" + \
+                    f"🎲 https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(file_id)}"
             if Config.DELETE_SENT_FILE:
                 tex += f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n" + \
                 f"🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."

@@ -38,7 +38,7 @@ class Config(object):
     SKIP_SAVED_INFO_MESSAGE = os.environ.get('SKIP_SAVED_INFO_MESSAGE', False)
     USE_BUTTON_FOR_LINK = os.environ.get('USE_BUTTON_FOR_LINK', True)
     BUTTON_FOR_LINK_STR = os.environ.get('USE_BUTTON_FOR_LINK', "🇬🇧 Click Me / 🇹🇷 Bana Tıkla")
-
+    SEND_LINK_AGAIN = os.environ.get('SEND_LINK_AGAIN', True)
 
     # if you want to config from here, uncomment this lines and edit:
 
@@ -68,3 +68,4 @@ class Config(object):
     # SKIP_SAVED_INFO_MESSAGE = False
     # USE_BUTTON_FOR_LINK = True
     # BUTTON_FOR_LINK_STR = "🇬🇧 Click Me / 🇹🇷 Bana Tıkla"
+    # SEND_LINK_AGAIN = True

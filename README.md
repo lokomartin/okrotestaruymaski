@@ -69,6 +69,7 @@ oluşturacağım bağlantıya kim tıklarsa ona, bana gönderdiğin dosyayı/med
 - `SKIP_SAVED_INFO_MESSAGE`: Skip saved info message like "Your file saved into db..." Default is `False`
 - `USE_BUTTON_FOR_LINK`: Create messages with button. Default is `True`
 - `BUTTON_FOR_LINK_STR`: If `USE_BUTTON_FOR_LINK` is true, this value sets the button string. Example: `Click me to get your file`
+- `SEND_LINK_AGAIN`: Send link again after sending file. Default is `True`
 
 </details>
 
