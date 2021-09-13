@@ -13,6 +13,7 @@ from handlers.forcesub_handler import ForceSub
 from handlers.forwarder_handler import forwardMessage
 from handlers.send_mesage_handler import sendMessage
 from handlers.database.add_user import AddUserToDatabase
+from handlers.auth_check import AuthCheck
 
 User = Client( session_name=Config.STRING_SESSION, api_id=Config.API_ID,  api_hash=Config.API_HASH)
 Bot = Client( session_name="Auto Group - Private Chat Files Store Bot", api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN)
@@ -40,6 +41,9 @@ def humanbytes(size):
 
 @Bot.on_message(filters.private & (filters.document | filters.video | filters.audio | filters.photo | filters.voice))
 async def private_handler(bot: Client, cmd: Message):
+    if not await AuthCheck(cmd.chat.id, cmd.from_user.id):
+        print("not authorized chat. read readme!")
+        return
     if Config.ACCEPT_FROM_PRIVATE:
         # take caption of message +
         caption = None
@@ -172,6 +176,9 @@ async def private_handler(bot: Client, cmd: Message):
 
 @User.on_message(filters.group & (filters.document | filters.video | filters.audio))
 async def files_handler(bot: Client, cmd: Message):
+    if not await AuthCheck(cmd.chat.id, cmd.from_user.id):
+        print("not authorized chat. read readme!")
+        return
     # take caption of message +
     caption = None
     try:
@@ -349,6 +356,9 @@ async def files_handler(bot: Client, cmd: Message):
 
 @Bot.on_message(filters.private & filters.command("start") & ~filters.edited)
 async def start_handler(bot: Client, event: Message):
+    if not await AuthCheck(event.chat.id, event.from_user.id):
+        print("not authorized chat. read readme!")
+        return
     __data = event.text.split("_")[-1]
     if __data == "/start":
         await sendMessage(bot, Config.START_MESSAGE, event.message_id, event.chat.id)
@@ -378,6 +388,9 @@ async def start_handler(bot: Client, event: Message):
 
 @Bot.on_message(filters.group & filters.text & ~filters.edited)
 async def Fsub_handler(bot: Client, event: Message):
+    if not await AuthCheck(event.chat.id, event.from_user.id):
+        print("not authorized chat. read readme!")
+        return
     if (Config.FORCE_SUB_CHANNEL is not None) and (event.from_user.is_bot is False):
         await AddUserToDatabase(event)
         Fsub = await ForceSub(Bot, event)

@@ -40,6 +40,7 @@ class Config(object):
     BUTTON_FOR_LINK_STR = os.environ.get('USE_BUTTON_FOR_LINK', "🇬🇧 Click Me / 🇹🇷 Bana Tıkla")
     SEND_LINK_AGAIN = os.environ.get('SEND_LINK_AGAIN', True)
     USE_BOT_INSTEAD_USER = os.environ.get('USE_BOT_INSTEAD_USER', True)
+    AUTH_IDS = [int(x) for x in os.environ.get("AUTH_IDS", "0").split()] # 0 = everyone
 
     # if you want to config from here, uncomment this lines and edit:
 
@@ -71,3 +72,4 @@ class Config(object):
     # BUTTON_FOR_LINK_STR = "🇬🇧 Click Me / 🇹🇷 Bana Tıkla"
     # SEND_LINK_AGAIN = True
     # USE_BOT_INSTEAD_USER = True
+    # AUTH_IDS = "-100428772 1242 785785 -757575" # sadece "0" verirseniz herkese açık hale gelir.
