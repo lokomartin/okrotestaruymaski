@@ -15,7 +15,8 @@ from handlers.send_mesage_handler import sendMessage
 from handlers.database.add_user import AddUserToDatabase
 from handlers.auth_check import AuthCheck
 
-User = Client( session_name=Config.STRING_SESSION, api_id=Config.API_ID,  api_hash=Config.API_HASH)
+if not Config.ONLY_BOT_MODE:
+    User = Client( session_name=Config.STRING_SESSION, api_id=Config.API_ID,  api_hash=Config.API_HASH)
 Bot = Client( session_name="Auto Group - Private Chat Files Store Bot", api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN)
 
 # Start User Client
@@ -457,9 +458,10 @@ async def handle_Fsub_Join(bot: Client, event: Message):
 
 pyrogram.idle()
 # Stop User Client
-User.stop()
-print("\n")
-print("Userbot Stopped!")
+if not Config.ONLY_BOT_MODE:
+    User.stop()
+    print("\n")
+    print("Userbot Stopped!")
 # Stop Bot Client
 Bot.stop()
 print("Bot Stopped!")

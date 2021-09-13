@@ -41,6 +41,7 @@ class Config(object):
     SEND_LINK_AGAIN = os.environ.get('SEND_LINK_AGAIN', True)
     USE_BOT_INSTEAD_USER = os.environ.get('USE_BOT_INSTEAD_USER', True)
     AUTH_IDS = [int(x) for x in os.environ.get("AUTH_IDS", "0").split()] # 0 = everyone
+    ONLY_BOT_MODE = os.environ.get('ONLY_BOT_MODE', False)
 
     # if you want to config from here, uncomment this lines and edit:
 
@@ -73,3 +74,4 @@ class Config(object):
     # SEND_LINK_AGAIN = True
     # USE_BOT_INSTEAD_USER = True
     # AUTH_IDS = "-100428772 1242 785785 -757575" # sadece "0" verirseniz herkese açık hale gelir.
+    # ONLY_BOT_MODE = False

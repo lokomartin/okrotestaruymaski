@@ -74,6 +74,7 @@ oluşturacağım bağlantıya kim tıklarsa ona, bana gönderdiğin dosyayı/med
 - `SEND_LINK_AGAIN`: Send link again after sending file. Default is `True`
 - `USE_BOT_INSTEAD_USER`: Send links wit bot. (Button will works with groups if this is true.) Default: `True`
 - `AUTH_IDS`: Auth only some groups or users. If you want public, leave it empty or give `0`. Example: `-100656 56191 -10056561`
+- `ONLY_BOT_MODE`: Run as bot only. Default is `False`
 
 </details>
 
