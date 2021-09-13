@@ -1,5 +1,6 @@
 # (c) @AbirHasan2005 & @HuzunluArtemis
 
+from asyncio.windows_events import NULL
 import os
 
 # If it works on a cloud platform like heroku, you can use enviroment variables.
@@ -24,7 +25,7 @@ class Config(object):
     MIN_FILE_SIZE = int(os.environ.get('MIN_FILE_SIZE', 0)) # for save everything:0 for save nothing:200000 5242880
     SEND_AS_COPY = os.environ.get('SEND_AS_COPY', True) # if you want to send files to users as a copy
     SAVE_AS_COPY = os.environ.get('SAVE_AS_COPY', True) # if you want to save files to db as a copy
-    CONTACT_ADRESS = os.environ.get('CONTACT_ADRESS', '@HuzunluArtemis')
+    CONTACT_ADRESS = os.environ.get('CONTACT_ADRESS', None)
     URL_PREFIX = os.environ.get('URL_PREFIX', 'HA')
     AUTO_DELETE = os.environ.get('AUTO_DELETE', True)
     AUTO_DELETE_TIME = int(os.environ.get('AUTO_DELETE_TIME', 10))
@@ -76,4 +77,8 @@ class Config(object):
     # AUTH_IDS = "-100428772 1242 785785 -757575" # sadece "0" verirseniz herkese açık hale gelir.
     # ONLY_BOT_MODE = False
 
-    if STRING_SESSION is None: ONLY_BOT_MODE = True # dont touch this line
+
+    # dont touch this lines
+    if STRING_SESSION is None: ONLY_BOT_MODE = True 
+    if CONTACT_ADRESS is not None and CONTACT_ADRESS is not "" and CONTACT_ADRESS is not " ":
+        START_MESSAGE += f"\n\n💎 {CONTACT_ADRESS}"
