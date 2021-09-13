@@ -38,6 +38,7 @@ oluşturacağım bağlantıya kim tıklarsa ona, bana gönderdiğin dosyayı/med
 - Compatible with TorToolkit-like leechers (send new video)
 - Send links with bot instead of user. (helps hiding user)
 - Auth groups or users or use public
+- Run in only bot mode. (Just dont fill user-session)
 
 </details>
 

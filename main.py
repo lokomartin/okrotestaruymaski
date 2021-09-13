@@ -362,6 +362,7 @@ async def start_handler(bot: Client, event: Message):
         await sendMessage(bot, Config.START_MESSAGE, event.message_id, event.chat.id)
     else:
         file_id = int(__data)
+        print("data was: " + __data)
         try:
             if Config.SEND_AS_COPY:
                 sentfile = await bot.copy_message(chat_id=event.chat.id, from_chat_id=int(Config.DB_CHANNEL_ID), message_id=file_id)
@@ -389,7 +390,7 @@ async def start_handler(bot: Client, event: Message):
             if Config.DELETE_SENT_FILE:
                 tex += f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n" + \
                 f"🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
-            await sentfile.reply_text(tex, reply_to_message_id = sentfile.message_id)
+            await sentfile.reply_text(tex, reply_to_message_id = sentfile.message_id, disable_web_page_preview=True) 
             # delete send file +
             if Config.DELETE_SENT_FILE:
                 await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
