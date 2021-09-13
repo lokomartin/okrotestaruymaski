@@ -67,6 +67,8 @@ oluşturacağım bağlantıya kim tıklarsa ona, bana gönderdiğin dosyayı/med
 - `DELETE_SENT_FILE`: Delete file (saved-file) sent by bot. Example: `True` Default is `False`
 - `DELETE_SENT_FILE_TIME`: Set custom seconds for delete bot's sent files. Default is `60`
 - `SKIP_SAVED_INFO_MESSAGE`: Skip saved info message like "Your file saved into db..." Default is `False`
+- `USE_BUTTON_FOR_LINK`: Create messages with button. Default is `True`
+- `BUTTON_FOR_LINK_STR`: If `USE_BUTTON_FOR_LINK` is true, this value sets the button string. Example: `Click me to get your file`
 
 </details>
 

@@ -4,6 +4,7 @@ import asyncio
 from pyrogram import Client, filters, idle
 from pyrogram.errors import UserNotParticipant
 from pyrogram.types import Message, ChatPermissions
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from configs import Config
 from handlers.database.access_db import db
@@ -81,6 +82,7 @@ async def private_handler(bot: Client, cmd: Message):
 
 🇹🇷 Bu dosya {Config.AUTO_DELETE_TIME} saniye içinde silinecektir. Ancak, veritabanıma kopyaladım! Aşağıdaki linkle sonsuza kadar sana ait.
 🇬🇧 This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below."""
+            text += "\n"
             text += f"""
 ............................ 🌧 Details / Detaylar ............................
 
@@ -90,13 +92,24 @@ async def private_handler(bot: Client, cmd: Message):
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
-        #   
-            sentmessage = await sendMessage(
-                bot=bot,
-                message_id=cmd.message_id,
-                chat_id=cmd.chat.id,
-                text=text
-            )
+            if Config.USE_BUTTON_FOR_LINK:
+                sentmessage = await sendMessage(
+                    bot=bot,
+                    message_id=cmd.message_id,
+                    chat_id=cmd.chat.id,
+                    text=text,
+                    reply_markup=InlineKeyboardMarkup(
+                    [
+                        [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                    ])
+                )
+            else:
+                sentmessage = await sendMessage(
+                    bot=bot,
+                    message_id=cmd.message_id,
+                    chat_id=cmd.chat.id,
+                    text=text
+                )
             await asyncio.sleep(int(Config.AUTO_DELETE_TIME))
             try:
                 await cmd.delete(True)
@@ -118,12 +131,24 @@ async def private_handler(bot: Client, cmd: Message):
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
-            sentmessage = await sendMessage(
-                bot=bot,
-                message_id=cmd.message_id,
-                chat_id=cmd.chat.id,
-                text=text
-            )
+            if Config.USE_BUTTON_FOR_LINK:
+                sentmessage = await sendMessage(
+                    bot=bot,
+                    message_id=cmd.message_id,
+                    chat_id=cmd.chat.id,
+                    text=text,
+                    reply_markup=InlineKeyboardMarkup(
+                    [
+                        [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                    ])
+                )
+            else:
+                sentmessage = await sendMessage(
+                    bot=bot,
+                    message_id=cmd.message_id,
+                    chat_id=cmd.chat.id,
+                    text=text
+                )
         if Config.DELETE_SENT_MESSAGE:
             await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))
             await sentmessage.delete(True)
@@ -192,6 +217,7 @@ async def files_handler(bot: Client, cmd: Message):
 
 🇹🇷 Bu dosya {Config.AUTO_DELETE_TIME} saniye içinde silinecektir. Ancak, veritabanıma kopyaladım! Aşağıdaki linkle sonsuza kadar sana ait.
 🇬🇧 This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below."""
+        text += "\n"
         text += f"""
 ............................ 🌧 Details / Detaylar ............................
 
@@ -202,12 +228,24 @@ async def files_handler(bot: Client, cmd: Message):
         #
         if Config.DELETE_SENT_MESSAGE:
             text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
-        sentmessage = await sendMessage(
-            bot=bot,
-            message_id=cmd.message_id,
-            chat_id=cmd.chat.id,
-            text=text
-        )
+        if Config.USE_BUTTON_FOR_LINK:
+            sentmessage = await sendMessage(
+                bot=bot,
+                message_id=cmd.message_id,
+                chat_id=cmd.chat.id,
+                text=text,
+                reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                ])
+            )
+        else:
+            sentmessage = await sendMessage(
+                bot=bot,
+                message_id=cmd.message_id,
+                chat_id=cmd.chat.id,
+                text=text
+            )
         #
         await asyncio.sleep(int(Config.AUTO_DELETE_TIME))
         try:
@@ -231,12 +269,24 @@ async def files_handler(bot: Client, cmd: Message):
         #
         if Config.DELETE_SENT_MESSAGE:
             text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
-        sentmessage = await sendMessage(
-            bot=bot,
-            message_id=cmd.message_id,
-            chat_id=cmd.chat.id,
-            text=text
-        )
+        if Config.USE_BUTTON_FOR_LINK:
+            sentmessage = await sendMessage(
+                bot=bot,
+                message_id=cmd.message_id,
+                chat_id=cmd.chat.id,
+                text=text,
+                reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                ])
+            )
+        else:
+            sentmessage = await sendMessage(
+                bot=bot,
+                message_id=cmd.message_id,
+                chat_id=cmd.chat.id,
+                text=text
+            )
     #
     if Config.DELETE_SENT_MESSAGE:
             await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))
@@ -257,10 +307,15 @@ async def start_handler(bot: Client, event: Message):
                 sentfile = await bot.copy_message(chat_id=event.chat.id, from_chat_id=int(Config.DB_CHANNEL_ID), message_id=file_id)
             else:
                 sentfile = await bot.forward_messages(chat_id=event.chat.id, from_chat_id=int(Config.DB_CHANNEL_ID), message_ids=file_id)
+            tex = "🇬🇧 Link to your file. You can access your file at any time with this link:\n" + \
+                "🇹🇷 Dosyanızın linki. Bu linkle istediğiniz zaman tekrar dosyanıza ulaşabilirsiniz:\n\n" + \
+                f"🎲 https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(file_id)}"
+            if Config.DELETE_SENT_FILE:
+                tex += f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n" + \
+                f"🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
+            await sentfile.reply_text(tex, reply_to_message_id = sentfile.message_id)
             # delete send file +
             if Config.DELETE_SENT_FILE:
-                tex = f"\n\n🇬🇧 This file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n🇹🇷 Bu dosya {str(Config.DELETE_SENT_FILE_TIME)} saniye sonra silinecek. Dosyanı yedeklersen iyi olur."
-                await sentfile.reply_text(tex, reply_to_message_id = sentfile.message_id)
                 await asyncio.sleep(int(Config.DELETE_SENT_FILE_TIME))
                 await sentfile.delete(True)
             # delete send file -

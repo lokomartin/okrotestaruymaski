@@ -36,6 +36,8 @@ class Config(object):
     DELETE_SENT_FILE_TIME = int(os.environ.get('DELETE_SENT_FILE_TIME', 60))
     START_MESSAGE = os.environ.get('START_MESSAGE', "Bot is running.")
     SKIP_SAVED_INFO_MESSAGE = os.environ.get('SKIP_SAVED_INFO_MESSAGE', False)
+    USE_BUTTON_FOR_LINK = os.environ.get('USE_BUTTON_FOR_LINK', True)
+    BUTTON_FOR_LINK_STR = os.environ.get('USE_BUTTON_FOR_LINK', "🇬🇧 Click Me / 🇹🇷 Bana Tıkla")
 
 
     # if you want to config from here, uncomment this lines and edit:
@@ -64,3 +66,5 @@ class Config(object):
     # DELETE_SENT_FILE_TIME = int(os.environ.get('DELETE_SENT_FILE_TIME', 60))
     # START_MESSAGE = "Bot is running."
     # SKIP_SAVED_INFO_MESSAGE = False
+    # USE_BUTTON_FOR_LINK = True
+    # BUTTON_FOR_LINK_STR = "🇬🇧 Click Me / 🇹🇷 Bana Tıkla"
