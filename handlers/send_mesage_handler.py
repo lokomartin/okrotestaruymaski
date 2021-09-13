@@ -5,7 +5,7 @@ from pyrogram import Client
 from pyrogram.errors import FloodWait
 from pyrogram.types import InlineKeyboardMarkup
 
-async def sendMessage(bot: Client, text: str, message_id: int, chat_id: int, reply_markup: InlineKeyboardMarkup):
+async def sendMessage(bot: Client, text: str, message_id: int, chat_id: int, reply_markup: InlineKeyboardMarkup = None):
     """
     Custom Send Message Function with FloodWait Error Handler & Website Preview Disabled. You can Send Message with a Reply to Group Message.
 
