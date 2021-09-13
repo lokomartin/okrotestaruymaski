@@ -21,8 +21,8 @@ Bot = Client( session_name="Auto Group - Private Chat Files Store Bot", api_id=C
 
 # Start User Client
 if not Config.ONLY_BOT_MODE:
-        User.start()
-print("Userbot Started!")
+    User.start()
+    print("Userbot Started!")
 # Start Bot Client
 Bot.start()
 print("Bot Started!")
@@ -174,94 +174,82 @@ async def private_handler(bot: Client, cmd: Message):
 
 
 
-
-
-@User.on_message(filters.group & (filters.document | filters.video | filters.audio))
-async def files_handler(bot: Client, cmd: Message):
-    if not await AuthCheck(cmd.chat.id, cmd.from_user.id):
-        print("not authorized chat. read readme!")
-        return
-    # take caption of message +
-    caption = None
-    try:
-        caption = cmd.caption
-    except:
+if not Config.ONLY_BOT_MODE:
+    @User.on_message(filters.group & (filters.document | filters.video | filters.audio))
+    async def files_handler(bot: Client, cmd: Message):
+        if not await AuthCheck(cmd.chat.id, cmd.from_user.id):
+            print("not authorized chat. read readme!")
+            return
+        # take caption of message +
         caption = None
-    # take caption of message -
-    media = cmd.document or cmd.video or cmd.audio
-    if not cmd.from_user.is_bot:
-        if cmd.edit_date is not None:
+        try:
+            caption = cmd.caption
+        except:
+            caption = None
+        # take caption of message -
+        media = cmd.document or cmd.video or cmd.audio
+        if not cmd.from_user.is_bot:
+            if cmd.edit_date is not None:
+                return
+        try:
+            cammingfilename = media.file_name
+            if cammingfilename.rsplit(".", 1)[-1] in Config.BLOCKED_EXTENSIONS:
+                return
+        except:
+            cammingfilename = None
+        if media.file_size < int(Config.MIN_FILE_SIZE):
             return
-    try:
-        cammingfilename = media.file_name
-        if cammingfilename.rsplit(".", 1)[-1] in Config.BLOCKED_EXTENSIONS:
-            return
-    except:
-        cammingfilename = None
-    if media.file_size < int(Config.MIN_FILE_SIZE):
-        return
-    if (Config.FORCE_SUB_CHANNEL is not None) and (cmd.from_user.is_bot is False):
-        await AddUserToDatabase(cmd)
-        Fsub = await ForceSub(Bot, cmd)
-        if Fsub == 400:
-            await db.set_joined_channel(cmd.from_user.id, joined_channel=False)
-            await db.set_group_id(cmd.from_user.id, group_id=cmd.chat.id)
-            try:
-                await bot.restrict_chat_member(
-                    chat_id=cmd.chat.id,
-                    user_id=cmd.from_user.id,
-                    permissions=ChatPermissions(can_send_messages=False)
-                )
-            except:
-                pass
-            return
-        elif Fsub == 404:
-            try:
-                await bot.kick_chat_member(chat_id=cmd.chat.id, user_id=cmd.from_user.id)
-            except:
-                pass
-        else:
-            await db.delete_user(cmd.from_user.id)
-    #
-    forward = await forwardMessage(cmd)
-    
-    #
-    size = humanbytes(media.file_size)
-    if Config.AUTO_DELETE:
-        text = ""
-        if not Config.SKIP_SAVED_INFO_MESSAGE:
-            text += f"""
-....................... ✅ Tamamlandı / Finished .......................
-
-🇹🇷 Bu dosya {Config.AUTO_DELETE_TIME} saniye içinde silinecektir. Ancak, veritabanıma kopyaladım! Aşağıdaki linkle sonsuza kadar sana ait.
-🇬🇧 This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below."""
-        text += "\n"
-        text += f"""
-............................ 🌧 Details / Detaylar ............................
-
-🌈 File: `{cammingfilename}`
-🍏 Size: `{size}`
-🐇 Caption: `{caption}`
-[☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
-        #
-        if Config.DELETE_SENT_MESSAGE:
-            text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
-        if Config.USE_BUTTON_FOR_LINK:
-            # try buttons
-            if Config.USE_BOT_INSTEAD_USER:
-                sentmessage = await sendMessage(
-                    bot=Bot,
-                    message_id=cmd.message_id,
-                    chat_id=cmd.chat.id,
-                    text=text,
-                    reply_markup=InlineKeyboardMarkup(
-                    [
-                        [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
-                    ])
-                )
+        if (Config.FORCE_SUB_CHANNEL is not None) and (cmd.from_user.is_bot is False):
+            await AddUserToDatabase(cmd)
+            Fsub = await ForceSub(Bot, cmd)
+            if Fsub == 400:
+                await db.set_joined_channel(cmd.from_user.id, joined_channel=False)
+                await db.set_group_id(cmd.from_user.id, group_id=cmd.chat.id)
+                try:
+                    await bot.restrict_chat_member(
+                        chat_id=cmd.chat.id,
+                        user_id=cmd.from_user.id,
+                        permissions=ChatPermissions(can_send_messages=False)
+                    )
+                except:
+                    pass
+                return
+            elif Fsub == 404:
+                try:
+                    await bot.kick_chat_member(chat_id=cmd.chat.id, user_id=cmd.from_user.id)
+                except:
+                    pass
             else:
-                sentmessage = await sendMessage(
-                        bot=bot,
+                await db.delete_user(cmd.from_user.id)
+        #
+        forward = await forwardMessage(cmd)
+        
+        #
+        size = humanbytes(media.file_size)
+        if Config.AUTO_DELETE:
+            text = ""
+            if not Config.SKIP_SAVED_INFO_MESSAGE:
+                text += f"""
+    ....................... ✅ Tamamlandı / Finished .......................
+
+    🇹🇷 Bu dosya {Config.AUTO_DELETE_TIME} saniye içinde silinecektir. Ancak, veritabanıma kopyaladım! Aşağıdaki linkle sonsuza kadar sana ait.
+    🇬🇧 This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below."""
+            text += "\n"
+            text += f"""
+    ............................ 🌧 Details / Detaylar ............................
+
+    🌈 File: `{cammingfilename}`
+    🍏 Size: `{size}`
+    🐇 Caption: `{caption}`
+    [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+            #
+            if Config.DELETE_SENT_MESSAGE:
+                text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
+            if Config.USE_BUTTON_FOR_LINK:
+                # try buttons
+                if Config.USE_BOT_INSTEAD_USER:
+                    sentmessage = await sendMessage(
+                        bot=Bot,
                         message_id=cmd.message_id,
                         chat_id=cmd.chat.id,
                         text=text,
@@ -270,90 +258,101 @@ async def files_handler(bot: Client, cmd: Message):
                             [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
                         ])
                     )
-        else:
-            if Config.USE_BOT_INSTEAD_USER:
-                sentmessage = await sendMessage(
+                else:
+                    sentmessage = await sendMessage(
+                            bot=bot,
+                            message_id=cmd.message_id,
+                            chat_id=cmd.chat.id,
+                            text=text,
+                            reply_markup=InlineKeyboardMarkup(
+                            [
+                                [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                            ])
+                        )
+            else:
+                if Config.USE_BOT_INSTEAD_USER:
+                    sentmessage = await sendMessage(
+                        bot=Bot,
+                        message_id=cmd.message_id,
+                        chat_id=cmd.chat.id,
+                        text=text
+                    )
+                else:
+                    sentmessage = await sendMessage(
+                        bot=bot,
+                        message_id=cmd.message_id,
+                        chat_id=cmd.chat.id,
+                        text=text
+                    )
+            #
+            await asyncio.sleep(int(Config.AUTO_DELETE_TIME))
+            try:
+                await cmd.delete(True)
+            except Exception as err:
+                if Config.USE_BOT_INSTEAD_USER:
+                    await sendMessage(
                     bot=Bot,
                     message_id=cmd.message_id,
                     chat_id=cmd.chat.id,
-                    text=text
-                )
-            else:
-                sentmessage = await sendMessage(
+                    text=f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
+                else:
+                    await sendMessage(
                     bot=bot,
                     message_id=cmd.message_id,
                     chat_id=cmd.chat.id,
-                    text=text
-                )
-        #
-        await asyncio.sleep(int(Config.AUTO_DELETE_TIME))
-        try:
-            await cmd.delete(True)
-        except Exception as err:
-            if Config.USE_BOT_INSTEAD_USER:
-                await sendMessage(
-                bot=Bot,
-                message_id=cmd.message_id,
-                chat_id=cmd.chat.id,
-                text=f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
-            else:
-                await sendMessage(
-                bot=bot,
-                message_id=cmd.message_id,
-                chat_id=cmd.chat.id,
-                text=f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
-        #
-    else:
-        text = f"""
-....................... ✅ Tamamlandı / Finished .......................
+                    text=f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
+            #
+        else:
+            text = f"""
+    ....................... ✅ Tamamlandı / Finished .......................
 
-🌈 File: `{cammingfilename}`
-🍏 Size: `{size}`
-🐇 Caption: `{caption}`
-[☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+    🌈 File: `{cammingfilename}`
+    🍏 Size: `{size}`
+    🐇 Caption: `{caption}`
+    [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+            #
+            if Config.DELETE_SENT_MESSAGE:
+                text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
+            if Config.USE_BUTTON_FOR_LINK:
+                if Config.USE_BOT_INSTEAD_USER:
+                    sentmessage = await sendMessage(
+                        bot=Bot,
+                        message_id=cmd.message_id,
+                        chat_id=cmd.chat.id,
+                        text=text,
+                        reply_markup=InlineKeyboardMarkup(
+                        [
+                            [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                        ]))
+                else:
+                    sentmessage = await sendMessage(
+                        bot=bot,
+                        message_id=cmd.message_id,
+                        chat_id=cmd.chat.id,
+                        text=text,
+                        reply_markup=InlineKeyboardMarkup(
+                        [
+                            [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                        ]))
+            else:
+                if Config.USE_BOT_INSTEAD_USER:
+                    sentmessage = await sendMessage(
+                        bot=Bot,
+                        message_id=cmd.message_id,
+                        chat_id=cmd.chat.id,
+                        text=text)
+                else:
+                    sentmessage = await sendMessage(
+                        bot=bot,
+                        message_id=cmd.message_id,
+                        chat_id=cmd.chat.id,
+                        text=text)
         #
         if Config.DELETE_SENT_MESSAGE:
-            text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
-        if Config.USE_BUTTON_FOR_LINK:
-            if Config.USE_BOT_INSTEAD_USER:
-                sentmessage = await sendMessage(
-                    bot=Bot,
-                    message_id=cmd.message_id,
-                    chat_id=cmd.chat.id,
-                    text=text,
-                    reply_markup=InlineKeyboardMarkup(
-                    [
-                        [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
-                    ]))
-            else:
-                sentmessage = await sendMessage(
-                    bot=bot,
-                    message_id=cmd.message_id,
-                    chat_id=cmd.chat.id,
-                    text=text,
-                    reply_markup=InlineKeyboardMarkup(
-                    [
-                        [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
-                    ]))
-        else:
-            if Config.USE_BOT_INSTEAD_USER:
-                sentmessage = await sendMessage(
-                    bot=Bot,
-                    message_id=cmd.message_id,
-                    chat_id=cmd.chat.id,
-                    text=text)
-            else:
-                sentmessage = await sendMessage(
-                    bot=bot,
-                    message_id=cmd.message_id,
-                    chat_id=cmd.chat.id,
-                    text=text)
-    #
-    if Config.DELETE_SENT_MESSAGE:
-            await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))
-            await sentmessage.delete(True)
-    #
-    
+                await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))
+                await sentmessage.delete(True)
+        #
+        
 
 
 @Bot.on_message(filters.private & filters.command("start") & ~filters.edited)
@@ -426,35 +425,35 @@ async def Fsub_handler(bot: Client, event: Message):
         else:
             await db.delete_user(event.from_user.id)
 
+if not Config.ONLY_BOT_MODE:
+    @User.on_chat_member_updated()
+    async def handle_Fsub_Join(bot: Client, event: Message):
+        """
+        Auto Unmute Member after joining channel.
 
-@User.on_chat_member_updated()
-async def handle_Fsub_Join(bot: Client, event: Message):
-    """
-    Auto Unmute Member after joining channel.
+        :param bot: pyrogram.Client
+        :param event: pyrogram.types.Message
+        """
 
-    :param bot: pyrogram.Client
-    :param event: pyrogram.types.Message
-    """
-
-    if Config.FORCE_SUB_CHANNEL:
-        try:
-            user_ = await bot.get_chat_member(event.chat.id, event.from_user.id)
-            if user_.is_member is False:
-                return
-        except UserNotParticipant:
-            return
-        group_id = await db.get_group_id(event.from_user.id)
-        group_message_id = await db.get_group_message_id(event.from_user.id)
-        if group_id:
+        if Config.FORCE_SUB_CHANNEL:
             try:
-                await bot.unban_chat_member(chat_id=int(group_id), user_id=event.from_user.id)
+                user_ = await bot.get_chat_member(event.chat.id, event.from_user.id)
+                if user_.is_member is False:
+                    return
+            except UserNotParticipant:
+                return
+            group_id = await db.get_group_id(event.from_user.id)
+            group_message_id = await db.get_group_message_id(event.from_user.id)
+            if group_id:
                 try:
-                    await bot.delete_messages(chat_id=int(group_id), message_ids=group_message_id, revoke=True)
-                except Exception as err:
-                    print(f"Unable to Delete Message!\nError: {err}")
-                await db.delete_user(user_id=event.from_user.id)
-            except Exception as e:
-                print(f"Skipping FSub ...\nError: {e}")
+                    await bot.unban_chat_member(chat_id=int(group_id), user_id=event.from_user.id)
+                    try:
+                        await bot.delete_messages(chat_id=int(group_id), message_ids=group_message_id, revoke=True)
+                    except Exception as err:
+                        print(f"Unable to Delete Message!\nError: {err}")
+                    await db.delete_user(user_id=event.from_user.id)
+                except Exception as e:
+                    print(f"Skipping FSub ...\nError: {e}")
 
 
 pyrogram.idle()
