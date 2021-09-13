@@ -20,7 +20,8 @@ if not Config.ONLY_BOT_MODE:
 Bot = Client( session_name="Auto Group - Private Chat Files Store Bot", api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN)
 
 # Start User Client
-User.start()
+if not Config.ONLY_BOT_MODE:
+        User.start()
 print("Userbot Started!")
 # Start Bot Client
 Bot.start()
