@@ -357,7 +357,10 @@ if not Config.ONLY_BOT_MODE:
 
 @Bot.on_message(filters.private & filters.command("start") & ~filters.edited)
 async def start_handler(bot: Client, event: Message):
-    __data = event.text.split("_")[-1]
+    try:
+        __data = event.text.split("_")[1]
+    except:
+        __data = "/start"
     if __data == "/start":
         await sendMessage(bot, Config.START_MESSAGE, event.message_id, event.chat.id)
     else:
