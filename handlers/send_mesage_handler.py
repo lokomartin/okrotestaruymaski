@@ -3,9 +3,10 @@
 import asyncio
 from pyrogram import Client
 from pyrogram.errors import FloodWait
+from pyrogram.types import Message, InlineKeyboardMarkup
+from pyrogram.types.bots_and_keyboards import inline_keyboard_markup
 
-
-async def sendMessage(bot: Client, text: str, message_id: int, chat_id: int):
+async def sendMessage(bot: Client, text: str, message_id: int, chat_id: int, reply_markup: inline_keyboard_markup):
     """
     Custom Send Message Function with FloodWait Error Handler & Website Preview Disabled. You can Send Message with a Reply to Group Message.
 
@@ -20,7 +21,8 @@ async def sendMessage(bot: Client, text: str, message_id: int, chat_id: int):
             chat_id=chat_id,
             text=text,
             reply_to_message_id=message_id,
-            disable_web_page_preview=True
+            disable_web_page_preview=True,
+            reply_markup=reply_markup
         )
         return sentmessage
     except FloodWait as e:
