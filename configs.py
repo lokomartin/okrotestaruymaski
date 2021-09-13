@@ -1,6 +1,5 @@
 # (c) @AbirHasan2005 & @HuzunluArtemis
 
-from asyncio.windows_events import NULL
 import os
 
 # If it works on a cloud platform like heroku, you can use enviroment variables.
