@@ -239,7 +239,7 @@ async def files_handler(bot: Client, cmd: Message):
             text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
         if Config.USE_BUTTON_FOR_LINK:
             # try buttons
-            with Bot:
+            if Config.USE_BOT_INSTEAD_USER:
                 sentmessage = await sendMessage(
                     bot=Bot,
                     message_id=cmd.message_id,
@@ -250,24 +250,49 @@ async def files_handler(bot: Client, cmd: Message):
                         [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
                     ])
                 )
+            else:
+                sentmessage = await sendMessage(
+                        bot=bot,
+                        message_id=cmd.message_id,
+                        chat_id=cmd.chat.id,
+                        text=text,
+                        reply_markup=InlineKeyboardMarkup(
+                        [
+                            [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                        ])
+                    )
         else:
-            sentmessage = await sendMessage(
-                bot=bot,
-                message_id=cmd.message_id,
-                chat_id=cmd.chat.id,
-                text=text
-            )
+            if Config.USE_BOT_INSTEAD_USER:
+                sentmessage = await sendMessage(
+                    bot=Bot,
+                    message_id=cmd.message_id,
+                    chat_id=cmd.chat.id,
+                    text=text
+                )
+            else:
+                sentmessage = await sendMessage(
+                    bot=bot,
+                    message_id=cmd.message_id,
+                    chat_id=cmd.chat.id,
+                    text=text
+                )
         #
         await asyncio.sleep(int(Config.AUTO_DELETE_TIME))
         try:
             await cmd.delete(True)
         except Exception as err:
-            await sendMessage(
-            bot=bot,
-            message_id=cmd.message_id,
-            chat_id=cmd.chat.id,
-            text=f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}"
-        )
+            if Config.USE_BOT_INSTEAD_USER:
+                await sendMessage(
+                bot=Bot,
+                message_id=cmd.message_id,
+                chat_id=cmd.chat.id,
+                text=f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
+            else:
+                await sendMessage(
+                bot=bot,
+                message_id=cmd.message_id,
+                chat_id=cmd.chat.id,
+                text=f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
         #
     else:
         text = f"""
@@ -281,23 +306,39 @@ async def files_handler(bot: Client, cmd: Message):
         if Config.DELETE_SENT_MESSAGE:
             text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
         if Config.USE_BUTTON_FOR_LINK:
-            sentmessage = await sendMessage(
-                bot=bot,
-                message_id=cmd.message_id,
-                chat_id=cmd.chat.id,
-                text=text,
-                reply_markup=InlineKeyboardMarkup(
-                [
-                    [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
-                ])
-            )
+            if Config.USE_BOT_INSTEAD_USER:
+                sentmessage = await sendMessage(
+                    bot=Bot,
+                    message_id=cmd.message_id,
+                    chat_id=cmd.chat.id,
+                    text=text,
+                    reply_markup=InlineKeyboardMarkup(
+                    [
+                        [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                    ]))
+            else:
+                sentmessage = await sendMessage(
+                    bot=bot,
+                    message_id=cmd.message_id,
+                    chat_id=cmd.chat.id,
+                    text=text,
+                    reply_markup=InlineKeyboardMarkup(
+                    [
+                        [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                    ]))
         else:
-            sentmessage = await sendMessage(
-                bot=bot,
-                message_id=cmd.message_id,
-                chat_id=cmd.chat.id,
-                text=text
-            )
+            if Config.USE_BOT_INSTEAD_USER:
+                sentmessage = await sendMessage(
+                    bot=Bot,
+                    message_id=cmd.message_id,
+                    chat_id=cmd.chat.id,
+                    text=text)
+            else:
+                sentmessage = await sendMessage(
+                    bot=bot,
+                    message_id=cmd.message_id,
+                    chat_id=cmd.chat.id,
+                    text=text)
     #
     if Config.DELETE_SENT_MESSAGE:
             await asyncio.sleep(int(Config.DELETE_SENT_MESSAGE_TIME))

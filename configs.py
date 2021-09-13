@@ -39,6 +39,7 @@ class Config(object):
     USE_BUTTON_FOR_LINK = os.environ.get('USE_BUTTON_FOR_LINK', True)
     BUTTON_FOR_LINK_STR = os.environ.get('USE_BUTTON_FOR_LINK', "🇬🇧 Click Me / 🇹🇷 Bana Tıkla")
     SEND_LINK_AGAIN = os.environ.get('SEND_LINK_AGAIN', True)
+    USE_BOT_INSTEAD_USER = os.environ.get('USE_BOT_INSTEAD_USER', True)
 
     # if you want to config from here, uncomment this lines and edit:
 
@@ -69,3 +70,4 @@ class Config(object):
     # USE_BUTTON_FOR_LINK = True
     # BUTTON_FOR_LINK_STR = "🇬🇧 Click Me / 🇹🇷 Bana Tıkla"
     # SEND_LINK_AGAIN = True
+    # USE_BOT_INSTEAD_USER = True

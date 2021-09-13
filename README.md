@@ -36,6 +36,7 @@ oluşturacağım bağlantıya kim tıklarsa ona, bana gönderdiğin dosyayı/med
 - Custom start message
 - Compatible with PublicLeech-like leechers (edit as video)
 - Compatible with TorToolkit-like leechers (send new video)
+- Send links with bot instead of user. (helps hiding user)
 
 </details>
 
@@ -70,6 +71,7 @@ oluşturacağım bağlantıya kim tıklarsa ona, bana gönderdiğin dosyayı/med
 - `USE_BUTTON_FOR_LINK`: Create messages with button. Default is `True`
 - `BUTTON_FOR_LINK_STR`: If `USE_BUTTON_FOR_LINK` is true, this value sets the button string. Example: `Click me to get your file`
 - `SEND_LINK_AGAIN`: Send link again after sending file. Default is `True`
+- `USE_BOT_INSTEAD_USER`: Send links wit bot. (Button also works with groups if this is true.)`True`
 
 </details>
 
