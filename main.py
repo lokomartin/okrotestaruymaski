@@ -2,6 +2,7 @@
 
 import asyncio
 from pyrogram import Client, filters, idle
+import pyrogram
 from pyrogram.errors import UserNotParticipant
 from pyrogram.types import Message, ChatPermissions
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
@@ -15,6 +16,14 @@ from handlers.database.add_user import AddUserToDatabase
 
 User = Client( session_name=Config.STRING_SESSION, api_id=Config.API_ID,  api_hash=Config.API_HASH)
 Bot = Client( session_name="Auto Group - Private Chat Files Store Bot", api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN)
+
+# Start User Client
+User.start()
+print("Userbot Started!")
+# Start Bot Client
+Bot.start()
+print("Bot Started!")
+# Loop Clients till Disconnects
 
 def humanbytes(size):
     # https://stackoverflow.com/a/49361727/4723940
@@ -380,14 +389,8 @@ async def handle_Fsub_Join(bot: Client, event: Message):
             except Exception as e:
                 print(f"Skipping FSub ...\nError: {e}")
 
-# Start User Client
-User.start()
-print("Userbot Started!")
-# Start Bot Client
-Bot.start()
-print("Bot Started!")
-# Loop Clients till Disconnects
-idle()
+
+pyrogram.idle()
 # Stop User Client
 User.stop()
 print("\n")
