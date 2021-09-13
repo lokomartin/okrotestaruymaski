@@ -27,4 +27,4 @@ async def sendMessage(bot: Client, text: str, message_id: int, chat_id: int, rep
     except FloodWait as e:
         print(f"Sleep of {e.x}s caused by FloodWait")
         await asyncio.sleep(e.x)
-        await sendMessage(bot, text, message_id, chat_id)
+        await sendMessage(bot, text, message_id, chat_id, reply_markup)

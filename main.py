@@ -229,16 +229,18 @@ async def files_handler(bot: Client, cmd: Message):
         if Config.DELETE_SENT_MESSAGE:
             text += f"\n\n🇬🇧 This message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link.\n🇹🇷 Ayrıca bu mesaj da {str(Config.DELETE_SENT_MESSAGE_TIME)} saniye sonra silinecek. Linkini yedeklersen iyi olur."
         if Config.USE_BUTTON_FOR_LINK:
-            sentmessage = await sendMessage(
-                bot=bot,
-                message_id=cmd.message_id,
-                chat_id=cmd.chat.id,
-                text=text,
-                reply_markup=InlineKeyboardMarkup(
-                [
-                    [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
-                ])
-            )
+            # try buttons
+            with Bot:
+                sentmessage = await sendMessage(
+                    bot=Bot,
+                    message_id=cmd.message_id,
+                    chat_id=cmd.chat.id,
+                    text=text,
+                    reply_markup=InlineKeyboardMarkup(
+                    [
+                        [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                    ])
+                )
         else:
             sentmessage = await sendMessage(
                 bot=bot,
