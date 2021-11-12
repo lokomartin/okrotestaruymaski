@@ -70,7 +70,7 @@ class Config(object):
     # START_MESSAGE = "Bot is running."
     # SKIP_SAVED_INFO_MESSAGE = False
     # USE_BUTTON_FOR_LINK = True
-    # BUTTON_FOR_LINK_STR = "🇬🇧 Click Me / 🇹🇷 Bana Tıkla"
+    # BUTTON_FOR_LINK_STR = "👉 Get Your File Now 👈"
     # SEND_LINK_AGAIN = True
     # USE_BOT_INSTEAD_USER = True
     # AUTH_IDS = "-100428772 1242 785785 -757575" # sadece "0" verirseniz herkese açık hale gelir.
