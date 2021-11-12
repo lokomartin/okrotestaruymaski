@@ -231,15 +231,14 @@ if not Config.ONLY_BOT_MODE:
                 text += f"""
 ....................... ✅ Finished ✅.......................
 
-🇹🇷 Bu dosya {Config.AUTO_DELETE_TIME} saniye içinde silinecektir. Ancak, veritabanıma kopyaladım! Aşağıdaki linkle sonsuza kadar sana ait.
-🇬🇧 This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below."""
+This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below."""
             text += "\n"
             text += f"""
 ........................ 🌧 Details 🌧 .......................
 
-🌈 File: `{cammingfilename}`
-🍏 Size: `{size}`
-🐇 Caption: `{caption}`
+**File:** `{cammingfilename}`
+**Size:** `{size}`
+**Caption:** `{caption}`
 [☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             #
             if Config.DELETE_SENT_MESSAGE:
