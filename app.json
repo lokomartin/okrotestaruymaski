@@ -72,7 +72,7 @@
     "CONTACT_ADRESS": {
       "description": "read readme for this.",
       "value": "",
-      "required": true
+      "required": false
     },
     "URL_PREFIX": {
       "description": "read readme for this.",
