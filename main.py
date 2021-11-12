@@ -103,7 +103,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
 **File:** `{comingfilename}`
 **Size:** `{size}`
 **Caption:** `{caption}`
-[**Link**] (https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+[**Link**](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\nThis message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link."
             if Config.USE_BUTTON_FOR_LINK:
@@ -142,7 +142,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
 **File:** `{comingfilename}`
 **Size:** `{size}`
 **Caption:** `{caption}`
-[**Link**] (https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+[**Link**](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\nThis message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link."
             if Config.USE_BUTTON_FOR_LINK:
@@ -239,7 +239,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
 **File:** `{cammingfilename}`
 **Size:** `{size}`
 **Caption:** `{caption}`
-[**Link**] (https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+[**Link**](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             #
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\nThis message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link."
@@ -307,7 +307,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
 **File:** `{cammingfilename}`
 **Size:** `{size}`
 **Caption:** `{caption}`
-[**Link**] (https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+[**Link**](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             #
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\nThis message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link."
