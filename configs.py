@@ -79,5 +79,3 @@ class Config(object):
 
     # dont touch this lines
     if STRING_SESSION is None: ONLY_BOT_MODE = True
-    if CONTACT_ADRESS is not None and CONTACT_ADRESS is not "" and CONTACT_ADRESS is not " ":
-        START_MESSAGE += f"\n\n💎 {CONTACT_ADRESS}"
