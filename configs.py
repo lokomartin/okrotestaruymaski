@@ -37,7 +37,7 @@ class Config(object):
     START_MESSAGE = os.environ.get('START_MESSAGE', "Bot is running.")
     SKIP_SAVED_INFO_MESSAGE = os.environ.get('SKIP_SAVED_INFO_MESSAGE', False)
     USE_BUTTON_FOR_LINK = os.environ.get('USE_BUTTON_FOR_LINK', True)
-    BUTTON_FOR_LINK_STR = os.environ.get('USE_BUTTON_FOR_LINK', "🇬🇧 Click Me / 🇹🇷 Bana Tıkla")
+    BUTTON_FOR_LINK_STR = os.environ.get('USE_BUTTON_FOR_LINK', "👉 Get File Now 👈")
     SEND_LINK_AGAIN = os.environ.get('SEND_LINK_AGAIN', True)
     USE_BOT_INSTEAD_USER = os.environ.get('USE_BOT_INSTEAD_USER', True)
     AUTH_IDS = [int(x) for x in os.environ.get("AUTH_IDS", "0").split()] # 0 = everyone
@@ -78,4 +78,6 @@ class Config(object):
 
 
     # dont touch this lines
-    if STRING_SESSION is None: ONLY_BOT_MODE = True 
+    if STRING_SESSION is None: ONLY_BOT_MODE = True
+    if CONTACT_ADRESS is not None and CONTACT_ADRESS is not "" and CONTACT_ADRESS is not " ":
+        START_MESSAGE += f"\n\n💎 {CONTACT_ADRESS}"
