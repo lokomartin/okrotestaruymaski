@@ -95,15 +95,15 @@ async def private_handler(bot: Client, cmd: Message):
                 text += f"""
 ....................... ✅ Finished ✅.......................
 
-This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below."""
+This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database!"""
             text += "\n"
             text += f"""
-........................ 🌧 Details 🌧 ........................
+........................ 📋 Details 📋 ........................
 
-🌈 File: `{comingfilename}`
-🍏 Size: `{size}`
-🐇 Caption: `{caption}`
-[☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+**File:** `{comingfilename}`
+**Size:** `{size}`
+**Caption:** `{caption}`
+[**Link**] (https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\nThis message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link."
             if Config.USE_BUTTON_FOR_LINK:
@@ -139,10 +139,10 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
             text = f"""
 ....................... ✅ Finished ✅.......................
 
-🌈 File: `{comingfilename}`
-🍏 Size: `{size}`
-🐇 Caption: `{caption}`
-[☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+**File:** `{comingfilename}`
+**Size:** `{size}`
+**Caption:** `{caption}`
+[**Link**] (https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\nThis message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link."
             if Config.USE_BUTTON_FOR_LINK:
@@ -231,7 +231,7 @@ if not Config.ONLY_BOT_MODE:
                 text += f"""
 ....................... ✅ Finished ✅.......................
 
-This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database! It's yours forever with the link below."""
+This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it to the my database!"""
             text += "\n"
             text += f"""
 ........................ 🌧 Details 🌧 .......................
@@ -239,7 +239,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
 **File:** `{cammingfilename}`
 **Size:** `{size}`
 **Caption:** `{caption}`
-[☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+[**Link**] (https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             #
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\nThis message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link."
@@ -304,10 +304,10 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
             text = f"""
 ....................... ✅ Finished ✅.......................
 
-🌈 File: `{cammingfilename}`
-🍏 Size: `{size}`
-🐇 Caption: `{caption}`
-[☀️ Link](https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+**File:** `{cammingfilename}`
+**Size:** `{size}`
+**Caption:** `{caption}`
+[**Link**] (https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}): `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             #
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\nThis message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link."
@@ -384,9 +384,9 @@ async def start_handler(bot: Client, event: Message):
             #       
             if Config.SEND_LINK_AGAIN:
                 tex += "You can access your file at any time with this link:\n" + \
-                    f"🔥 `{comingfilename}`\n" \
-                    f"🎁 `{capton}`\n" \
-                    f"🎲 https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(file_id)}"
+                    f"**File:** `{comingfilename}`\n" \
+                    f"**Caption:** `{capton}`\n" \
+                    f"**Link:** https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(file_id)}"
             if Config.DELETE_SENT_FILE:
                 tex += f"\nThis file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n" + \
             await sentfile.reply_text(tex, reply_to_message_id = sentfile.message_id, disable_web_page_preview=True) 
