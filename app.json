@@ -17,22 +17,22 @@
     "API_ID": {
       "description": "Get this value from https://my.telegram.org",
       "value": "",
-      "required": true
+      "required": false
     },
     "API_HASH": {
       "description": "Get this value from https://my.telegram.org",
       "value": "",
-      "required": true
+      "required": false
     },
     "BOT_TOKEN": {
       "description": "telegram bot token, get it from @botfather",
       "value": "",
-      "required": true
+      "required": false
     },
     "DB_CHANNEL_ID": {
       "description": "Your private channel id for database. In that channel bot will save files.",
       "value": "",
-      "required": true
+      "required": false
     },
     "FORCE_SUB_CHANNEL": {
       "description": "Your channel username that you want to forcesub",
@@ -42,21 +42,21 @@
     "MONGODB_URI": {
       "description": "Mongo database url get it from https://www.mongodb.com",
       "value": "",
-      "required": true
+      "required": false
     },
     "BLOCKED_EXTENSIONS": {
       "description": "blocked files extension that will not get deleted.",
-      "value": "srt txt html aio pdf lnk url",
+      "value": "",
       "required": false
     },
     "BOT_USERNAME": {
       "description": "bot username",
       "value": "",
-      "required": true
+      "required": false
     },
     "MIN_FILE_SIZE": {
       "description": "read readme for this.",
-      "value": "0",
+      "value": "",
       "required": false
     },
     "SEND_AS_COPY": {
@@ -76,22 +76,22 @@
     },
     "URL_PREFIX": {
       "description": "read readme for this.",
-      "value": "HA",
+      "value": "",
       "required": true
     },
     "AUTO_DELETE": {
       "description": "read readme for this.",
-      "value": "True",
+      "value": "",
       "required": false
     },
     "AUTO_DELETE_TIME": {
       "description": "read readme for this.",
-      "value": "10",
-      "required": true
+      "value": "",
+      "required": false
     },
     "AUTO_KICK_TIME": {
       "description": "telegram bot token, get it from @botfather ",
-      "value": "10",
+      "value": "",
       "required": false
     }
   },
