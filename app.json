@@ -17,22 +17,22 @@
     "API_ID": {
       "description": "Get this value from https://my.telegram.org",
       "value": "",
-      "required": false
+      "required": true
     },
     "API_HASH": {
       "description": "Get this value from https://my.telegram.org",
       "value": "",
-      "required": false
+      "required": true
     },
     "BOT_TOKEN": {
       "description": "telegram bot token, get it from @botfather",
       "value": "",
-      "required": false
+      "required": true
     },
     "DB_CHANNEL_ID": {
       "description": "Your private channel id for database. In that channel bot will save files.",
       "value": "",
-      "required": false
+      "required": true
     },
     "FORCE_SUB_CHANNEL": {
       "description": "Your channel username that you want to forcesub",
@@ -42,21 +42,21 @@
     "MONGODB_URI": {
       "description": "Mongo database url get it from https://www.mongodb.com",
       "value": "",
-      "required": false
+      "required": true
     },
     "BLOCKED_EXTENSIONS": {
       "description": "blocked files extension that will not get deleted.",
-      "value": "",
+      "value": "srt txt html aio pdf lnk url",
       "required": false
     },
     "BOT_USERNAME": {
       "description": "bot username",
       "value": "",
-      "required": false
+      "required": true
     },
     "MIN_FILE_SIZE": {
       "description": "read readme for this.",
-      "value": "",
+      "value": "0",
       "required": false
     },
     "SEND_AS_COPY": {
@@ -72,26 +72,26 @@
     "CONTACT_ADRESS": {
       "description": "read readme for this.",
       "value": "",
-      "required": false
+      "required": true
     },
     "URL_PREFIX": {
       "description": "read readme for this.",
-      "value": "",
-      "required": false
+      "value": "HA",
+      "required": true
     },
     "AUTO_DELETE": {
       "description": "read readme for this.",
-      "value": "",
+      "value": "True",
       "required": false
     },
     "AUTO_DELETE_TIME": {
       "description": "read readme for this.",
-      "value": "",
-      "required": false
+      "value": "10",
+      "required": true
     },
     "AUTO_KICK_TIME": {
       "description": "telegram bot token, get it from @botfather ",
-      "value": "",
+      "value": "10",
       "required": false
     }
   },
