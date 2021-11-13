@@ -389,6 +389,7 @@ async def start_handler(bot: Client, event: Message):
                     f"**Link:** https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(file_id)}"
             if Config.DELETE_SENT_FILE:
                 tex += f"\nThis file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n" + \
+                f"Ang file na ito ay mawawala pagkatapos ng {str(Config.DELETE_SENT_FILE_TIME)} segundo. Back up your file."
             await sentfile.reply_text(tex, reply_to_message_id = sentfile.message_id, disable_web_page_preview=True) 
             # delete send file +
             if Config.DELETE_SENT_FILE:
