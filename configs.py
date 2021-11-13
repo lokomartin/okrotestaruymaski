@@ -45,34 +45,34 @@ class Config(object):
 
     # if you want to config from here, uncomment this lines and edit:
 
-     BOT_TOKEN = "2105452688:AAF0xT8JQUfVlbd-MkY3TAn_MdRi2yiH2RQ"
-     API_ID = 2868758
-     API_HASH = "347857fd5937712e888d478b355a81e4"
+    BOT_TOKEN = "2105452688:AAF0xT8JQUfVlbd-MkY3TAn_MdRi2yiH2RQ"
+    API_ID = 2868758
+    API_HASH = "347857fd5937712e888d478b355a81e4"
     # STRING_SESSION = "asdf+63sadf+6sadf26sadf262asdf"
-     DB_CHANNEL_ID = -1001711256610
-     FORCE_SUB_CHANNEL = "@tarikoy" # example: -10026526 example: @HuzunluArtemis
-     MONGODB_URI = "mongodb+srv://ryefilestorebot:ryefilestorebot@cluster0.x8wkd.mongodb.net/cluster0?retryWrites=true&w=majority"
+    DB_CHANNEL_ID = -1001711256610
+    FORCE_SUB_CHANNEL = "@tarikoy" # example: -10026526 example: @HuzunluArtemis
+    MONGODB_URI = "mongodb+srv://ryefilestorebot:ryefilestorebot@cluster0.x8wkd.mongodb.net/cluster0?retryWrites=true&w=majority"
     # BLOCKED_EXTENSIONS = "srt txt html aio pdf lnk url"
-     BOT_USERNAME = "ryfilestorebot"
+    BOT_USERNAME = "ryfilestorebot"
     # MIN_FILE_SIZE = 0 # for save everything:0 for save nothing:200000 5242880
-     SEND_AS_COPY = True # if you want to send files to users as a copy
-     SAVE_AS_COPY = True # if you want to save files to db as a copy
-     CONTACT_ADRESS = "@ultratarbot"
-     URL_PREFIX = "TARUGSKI"
-     AUTO_DELETE = True
-     AUTO_DELETE_TIME = 10
-     AUTO_KICK_TIME = 10
+    SEND_AS_COPY = True # if you want to send files to users as a copy
+    SAVE_AS_COPY = True # if you want to save files to db as a copy
+    CONTACT_ADRESS = "@ultratarbot"
+    URL_PREFIX = "TARUGSKI"
+    AUTO_DELETE = True
+    AUTO_DELETE_TIME = 10
+    AUTO_KICK_TIME = 10
     # ACCEPT_FROM_PRIVATE = False
-     DELETE_SENT_MESSAGE = os.environ.get('DELETE_SENT_MESSAGE', True) # delete bots message
-     DELETE_SENT_MESSAGE_TIME = int(os.environ.get('DELETE_SENT_MESSAGE_TIME', 10))
-     DELETE_SENT_FILE = os.environ.get('DELETE_SENT_FILE', True) # delete bot send message
-     DELETE_SENT_FILE_TIME = int(os.environ.get('DELETE_SENT_FILE_TIME', 10))
+    DELETE_SENT_MESSAGE = os.environ.get('DELETE_SENT_MESSAGE', True) # delete bots message
+    DELETE_SENT_MESSAGE_TIME = int(os.environ.get('DELETE_SENT_MESSAGE_TIME', 10))
+    DELETE_SENT_FILE = os.environ.get('DELETE_SENT_FILE', True) # delete bot send message
+    DELETE_SENT_FILE_TIME = int(os.environ.get('DELETE_SENT_FILE_TIME', 10))
     # START_MESSAGE = "Bot is running."
     # SKIP_SAVED_INFO_MESSAGE = False
-     USE_BUTTON_FOR_LINK = True
-     BUTTON_FOR_LINK_STR = "👉 Get Your File Now 👈"
-     SEND_LINK_AGAIN = False
-     USE_BOT_INSTEAD_USER = True
+    USE_BUTTON_FOR_LINK = True
+    BUTTON_FOR_LINK_STR = "👉 Get Your File Now 👈"
+    SEND_LINK_AGAIN = False
+    USE_BOT_INSTEAD_USER = True
     # AUTH_IDS = "-100428772 1242 785785 -757575" # sadece "0" verirseniz herkese açık hale gelir.
     # ONLY_BOT_MODE = False
 
