@@ -14,7 +14,8 @@ async def ForceSub(bot: Client, cmd: Message):
         if user.status == "kicked":
             await bot.send_message(
                 chat_id=cmd.chat.id,
-                text=f"🇬🇧 Sorry, You are Banned! You will be Kicked from This Group within {Config.AUTO_KICK_TIME} Seconds.\n" \
+                text=f"Sorry, You are Banned! You will be Kicked from This Group within {Config.AUTO_KICK_TIME} Seconds.\n" \
+                    f"Sorry, Banned ka Kabayan! Maglalaho ka parang bula sa loob ng {Config.AUTO_KICK_TIME} Segundo.\n\n" \
                     f"Contact / Bildir: {Config.CONTACT_ADRESS}.",
                 disable_web_page_preview=True,
                 reply_to_message_id=cmd.message_id
@@ -34,7 +35,8 @@ async def ForceSub(bot: Client, cmd: Message):
         send_ = await bot.send_message(
             chat_id=cmd.chat.id,
             text = f"""
-Hey {cmd.from_user.mention}, seems like you haven't joined our channel. Please [Join Channel]({invite_link.invite_link}) and turn back here!""",
+Hey {cmd.from_user.mention}, seems like you haven't joined our channel. Please [Join Channel]({invite_link.invite_link}) and turn back here!
+Hoy {cmd.from_user.mention}, hindi ka pa ata ng join sa channel ko. Paki [Join Channel]({invite_link.invite_link}) at bumalik ka dito!""",
             reply_to_message_id=cmd.message_id,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
