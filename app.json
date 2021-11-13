@@ -77,7 +77,7 @@
     "URL_PREFIX": {
       "description": "read readme for this.",
       "value": "",
-      "required": true
+      "required": false
     },
     "AUTO_DELETE": {
       "description": "read readme for this.",
