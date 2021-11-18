@@ -6,7 +6,7 @@
 
 🇹🇷 Bu sadece grup dosyalarınızı bir Kanala kaydedecek ve dosyanızı almak için bir bağlantı sağlayacaktır.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/bataroamartin/AutoGroupPrivateChatFilesStoreBot)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/bataroamartin/okogrouptest/tree/master)
 
 🇬🇧 if you forward/send me any media/file, i can create a public link for you.
 I will send the file you sent me to anyone who clicks on the link i created.
