@@ -103,7 +103,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
 **File:** `{comingfilename}`
 **Size:** `{size}`
 **Caption:** `{caption}`
-**Link:** `https://reshort.com/api?api=72d8670ff5b9fdf776cae68eb439c6e687634ec0&url=https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+**Link:** `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\nThis message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link."
             if Config.USE_BUTTON_FOR_LINK:
@@ -114,7 +114,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
                     text=text,
                     reply_markup=InlineKeyboardMarkup(
                     [
-                        [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://reshort.com/api?api=72d8670ff5b9fdf776cae68eb439c6e687634ec0&url=https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                        [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
                     ])
                 )
             else:
@@ -142,7 +142,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
 **File:** `{comingfilename}`
 **Size:** `{size}`
 **Caption:** `{caption}`
-**Link:** `https://reshort.com/api?api=72d8670ff5b9fdf776cae68eb439c6e687634ec0&url=https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+**Link:** `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\nThis message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link."
             if Config.USE_BUTTON_FOR_LINK:
@@ -153,7 +153,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
                     text=text,
                     reply_markup=InlineKeyboardMarkup(
                     [
-                        [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://reshort.com/api?api=72d8670ff5b9fdf776cae68eb439c6e687634ec0&url=https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                        [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
                     ])
                 )
             else:
@@ -239,7 +239,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
 **File:** `{cammingfilename}`
 **Size:** `{size}`
 **Caption:** `{caption}`
-**Link:** `https://reshort.com/api?api=72d8670ff5b9fdf776cae68eb439c6e687634ec0&url=https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+**Link:** `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             #
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\nThis message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link."
@@ -253,7 +253,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
                         text=text,
                         reply_markup=InlineKeyboardMarkup(
                         [
-                            [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://reshort.com/api?api=72d8670ff5b9fdf776cae68eb439c6e687634ec0&url=https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                            [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
                         ])
                     )
                 else:
@@ -264,7 +264,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
                             text=text,
                             reply_markup=InlineKeyboardMarkup(
                             [
-                                [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://reshort.com/api?api=72d8670ff5b9fdf776cae68eb439c6e687634ec0&url=https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                                [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
                             ])
                         )
             else:
@@ -307,7 +307,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
 **File:** `{cammingfilename}`
 **Size:** `{size}`
 **Caption:** `{caption}`
-**Link:** `https://reshort.com/api?api=72d8670ff5b9fdf776cae68eb439c6e687634ec0&url=https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
+**Link:** `https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}`"""
             #
             if Config.DELETE_SENT_MESSAGE:
                 text += f"\nThis message also will be deleted in {str(Config.DELETE_SENT_MESSAGE_TIME)} seconds. Better back up your link."
@@ -320,7 +320,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
                         text=text,
                         reply_markup=InlineKeyboardMarkup(
                         [
-                            [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://reshort.com/api?api=72d8670ff5b9fdf776cae68eb439c6e687634ec0&url=https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                            [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
                         ]))
                 else:
                     sentmessage = await sendMessage(
@@ -330,7 +330,7 @@ This file will be deleted in {Config.AUTO_DELETE_TIME} seconds. But, I copied it
                         text=text,
                         reply_markup=InlineKeyboardMarkup(
                         [
-                            [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://reshort.com/api?api=72d8670ff5b9fdf776cae68eb439c6e687634ec0&url=https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
+                            [InlineKeyboardButton(Config.BUTTON_FOR_LINK_STR, url=f"https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(forward.message_id)}")]
                         ]))
             else:
                 if Config.USE_BOT_INSTEAD_USER:
@@ -386,7 +386,7 @@ async def start_handler(bot: Client, event: Message):
                 tex += "You can access your file at any time with this link:\n" + \
                     f"**File:** `{comingfilename}`\n" \
                     f"**Caption:** `{capton}`\n" \
-                    f"**Link:** https://reshort.com/api?api=72d8670ff5b9fdf776cae68eb439c6e687634ec0&url=https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(file_id)}"
+                    f"**Link:** https://t.me/{Config.BOT_USERNAME}?start={Config.URL_PREFIX}_{str(file_id)}"
             if Config.DELETE_SENT_FILE:
                 tex += f"\nThis file will be deleted in {str(Config.DELETE_SENT_FILE_TIME)} seconds. Better back up your file.\n" + \
                 f"Ang file na ito ay mawawala pagkatapos ng {str(Config.DELETE_SENT_FILE_TIME)} segundo. Back up your file."
