@@ -10,23 +10,23 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 
 async def handle_force_sub(bot: Client, cmd: Message):
     try:
-        user = await bot.get_chat_member(chat_id=(int(Config.UPDATES_CHANNEL) if Config.UPDATES_CHANNEL.startswith("-100") else Config.UPDATES_CHANNEL), user_id=cmd.from_user.id)
+        user = await bot.get_chat_member(chat_id=(int(Config.FORCE_SUB_CHANNEL) if Config.FORCE_SUB_CHANNEL.startswith("-100") else Config.FORCE_SUB_CHANNEL), user_id=cmd.from_user.id)
         if user.status == "kicked":
             await bot.send_message(
                 chat_id=cmd.from_user.id,
-                text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/DevsZone).",
+                text="Sorry Sir, You are Banned to use me. Contact my [Support Group](fu.com).",
                 parse_mode="markdown",
                 disable_web_page_preview=True
             )
             return 400
     except UserNotParticipant:
         try:
-            invite_link = await bot.create_chat_invite_link(chat_id=(int(Config.UPDATES_CHANNEL) if Config.UPDATES_CHANNEL.startswith("-100") else Config.UPDATES_CHANNEL))
+            invite_link = await bot.create_chat_invite_link(chat_id=(int(Config.FORCE_SUB_CHANNEL) if Config.FORCE_SUB_CHANNEL.startswith("-100") else Config.FORCE_SUB_CHANNEL))
         except FloodWait as e:
             await asyncio.sleep(e.x)
-            invite_link = await bot.create_chat_invite_link(chat_id=(int(Config.UPDATES_CHANNEL) if Config.UPDATES_CHANNEL.startswith("-100") else Config.UPDATES_CHANNEL))
+            invite_link = await bot.create_chat_invite_link(chat_id=(int(Config.FORCE_SUB_CHANNEL) if Config.FORCE_SUB_CHANNEL.startswith("-100") else Config.FORCE_SUB_CHANNEL))
         except Exception as err:
-            print(f"Unable to do Force Subscribe to {Config.UPDATES_CHANNEL}\n\nError: {err}")
+            print(f"Unable to do Force Subscribe to {Config.FORCE_SUB_CHANNEL}\n\nError: {err}")
             return 200
         await bot.send_message(
             chat_id=cmd.from_user.id,
@@ -48,7 +48,7 @@ async def handle_force_sub(bot: Client, cmd: Message):
     except Exception:
         await bot.send_message(
             chat_id=cmd.from_user.id,
-            text="Something went Wrong. Contact my [Support Group](https://t.me/DevsZone).",
+            text="Something went Wrong. Contact my [Support Group](fu.com).",
             parse_mode="markdown",
             disable_web_page_preview=True
         )
