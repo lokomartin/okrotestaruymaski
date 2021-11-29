@@ -8,6 +8,8 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/bataroamartin/okrofsubtar/tree/main)
 
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https%3A%2F%2Fgithub.com%2Fbataroamartin%2Fokrotestaruy&envs=API_ID%2CAPI_HASH%2CBOT_TOKEN%2CDB_CHANNEL_ID%2CMONGODB_URI%2CBOT_USERNAME%2CSEND_AS_COPY%2CSAVE_AS_COPY%2CCONTACT_ADRESS%2CURL_PREFIX%2CAUTO_DELETE%2CAUTO_DELETE_TIME%2CAUTO_KICK_TIME%2CMIN_FILE_SIZE%2CBLOCKED_EXTENSIONS&optionalEnvs=SEND_AS_COPY%2CSAVE_AS_COPY%2CMIN_FILE_SIZE%2CBLOCKED_EXTENSIONS&URL_PREFIXDefault=TARUGSKY&AUTO_DELETE_TIMEDefault=10&AUTO_KICK_TIMEDefault=10&MIN_FILE_SIZEDefault=0&referralCode=k-DAEY)
+
 🇬🇧 if you forward/send me any media/file, i can create a public link for you.
 I will send the file you sent me to anyone who clicks on the link i created.
 
