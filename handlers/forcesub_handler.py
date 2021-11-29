@@ -8,7 +8,7 @@ from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 
 
-async def handle_force_sub(bot: Client, cmd: Message):
+async def ForceSub(bot: Client, cmd: Message):
     try:
         user = await bot.get_chat_member(chat_id=(int(Config.FORCE_SUB_CHANNEL) if Config.FORCE_SUB_CHANNEL.startswith("-100") else Config.FORCE_SUB_CHANNEL), user_id=cmd.from_user.id)
         if user.status == "kicked":
